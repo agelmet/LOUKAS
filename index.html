@@ -23,8 +23,10 @@
   --yellow:#FFC42E;
   --blue:#2F8FD6;
   --white:#ffffff;
-  --shadow:0 18px 50px -22px rgba(94,54,144,.45);
-  --shadow-sm:0 10px 30px -16px rgba(94,54,144,.4);
+  /* Enhanced overall shadows for deeper, richer aesthetics */
+  --shadow:0 25px 60px -15px rgba(94,54,144,.45);
+  --shadow-sm:0 12px 35px -12px rgba(94,54,144,.35);
+  --shadow-glow:0 0 35px rgba(126,79,176,.25);
   --r-lg:32px; --r-md:22px; --r-sm:14px;
   --maxw:1180px;
   --display:'Fredoka',system-ui,sans-serif;
@@ -73,38 +75,35 @@ header.scrolled .brand .logo-pill{height:46px;padding:5px 14px}
 .burger.open span:nth-child(3){transform:translateY(-7.5px) rotate(-45deg)}
 
 /* ===== Hero ===== */
-.hero{position:relative;padding:160px 26px 90px;max-width:var(--maxw);margin:0 auto;display:grid;grid-template-columns:1.05fr .95fr;gap:50px;align-items:center;min-height:92vh}
-.blob{position:absolute;border-radius:50%;filter:blur(8px);opacity:.5;z-index:0;pointer-events:none}
-.b1{width:340px;height:340px;background:radial-gradient(circle,#cdeab8,transparent 70%);top:60px;left:-120px}
-.b2{width:300px;height:300px;background:radial-gradient(circle,#e3d2f5,transparent 70%);bottom:-40px;right:-90px}
-.hero-copy{position:relative;z-index:2}
-.eyebrow{display:inline-flex;align-items:center;gap:9px;background:#fff;border-radius:40px;padding:8px 16px 8px 10px;box-shadow:var(--shadow-sm);font-weight:700;font-size:.82rem;color:var(--purple);margin-bottom:24px;border:1px solid rgba(126,79,176,.1)}
+.hero{position:relative;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:180px 26px 100px;background:url('https://raw.githubusercontent.com/agelmet/LOUKAS/refs/heads/main/IMG_8054.jpg') center/cover fixed;overflow:hidden;z-index:1}
+.hero::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at center,rgba(251,248,242,.7) 0%,rgba(251,248,242,.96) 100%);backdrop-filter:blur(5px);z-index:-1}
+.hero-copy{position:relative;z-index:2;max-width:880px;display:flex;flex-direction:column;align-items:center;animation:slideUp .8s ease-out forwards}
+@keyframes slideUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;background:#fff;border-radius:40px;padding:8px 16px 8px 10px;box-shadow:var(--shadow-sm);font-weight:700;font-size:.82rem;color:var(--purple);margin-bottom:28px;border:1px solid rgba(126,79,176,.1)}
 .eyebrow .dot{width:9px;height:9px;border-radius:50%;background:var(--green);box-shadow:0 0 0 4px rgba(90,176,49,.22);animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{box-shadow:0 0 0 4px rgba(90,176,49,.22)}50%{box-shadow:0 0 0 7px rgba(90,176,49,.05)}}
-.hero h1{font-size:clamp(2.5rem,5.8vw,4.3rem);color:var(--ink);margin-bottom:20px}
+.hero h1{font-size:clamp(2.8rem,6vw,4.5rem);color:var(--ink);margin-bottom:24px;text-shadow:0 15px 35px rgba(0,0,0,.08);line-height:1.15}
 .hero h1 .hl{color:var(--purple);position:relative;white-space:nowrap}
 .hero h1 .hl svg{position:absolute;left:0;bottom:-10px;width:100%;height:16px}
-.hero p.lead{font-size:1.16rem;color:var(--ink-soft);max-width:520px;margin-bottom:34px}
-.hero-cta{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
-.btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--display);font-weight:600;font-size:1.02rem;padding:15px 28px;border-radius:50px;cursor:pointer;border:none;transition:all .28s;white-space:nowrap}
-.btn-primary{background:var(--purple);color:#fff;box-shadow:0 16px 32px -14px rgba(126,79,176,.85)}
-.btn-primary:hover{background:var(--purple-deep);transform:translateY(-3px);box-shadow:0 20px 38px -14px rgba(126,79,176,.9)}
+.hero p.lead{font-size:1.2rem;color:var(--ink);font-weight:600;max-width:640px;margin-bottom:40px;line-height:1.6;text-shadow:0 4px 15px #fff}
+.hero-cta{display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:center}
+.btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--display);font-weight:600;font-size:1.02rem;padding:15px 28px;border-radius:50px;cursor:pointer;border:none;transition:all .35s cubic-bezier(.175,.885,.32,1.275);white-space:nowrap}
+.btn-primary{background:var(--purple);color:#fff;box-shadow:0 16px 32px -14px rgba(126,79,176,.85),var(--shadow-glow)}
+.btn-primary:hover{background:var(--purple-deep);transform:translateY(-5px) scale(1.03);box-shadow:0 25px 40px -10px rgba(126,79,176,1),0 0 40px rgba(126,79,176,.5)}
 .btn-ghost{background:#fff;color:var(--purple);box-shadow:var(--shadow-sm)}
-.btn-ghost:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
-.hero-trust{display:flex;gap:26px;margin-top:38px;flex-wrap:wrap}
+.btn-ghost:hover{transform:translateY(-5px) scale(1.03);box-shadow:var(--shadow)}
+.hero-trust{display:flex;gap:36px;margin-top:46px;flex-wrap:wrap;justify-content:center}
 .hero-trust .t{display:flex;flex-direction:column}
 .hero-trust .t b{font-family:var(--display);font-size:1.7rem;color:var(--green-deep);line-height:1}
-.hero-trust .t span{font-size:.82rem;color:var(--ink-soft);font-weight:600;margin-top:3px}
+.hero-trust .t span{font-size:.82rem;color:var(--ink-soft);font-weight:600;margin-top:4px}
 
-/* hero visual */
-.hero-visual{position:relative;z-index:2}
-.hero-photo{position:relative;border-radius:36px;overflow:hidden;box-shadow:var(--shadow);aspect-ratio:4/5;background:var(--sky)}
-.hero-photo img{width:100%;height:100%;object-fit:cover;object-position:center top}
-.float-card{position:absolute;background:#fff;border-radius:18px;padding:13px 17px;box-shadow:var(--shadow);display:flex;align-items:center;gap:12px;font-weight:700;font-size:.9rem;z-index:3}
-.fc-1{bottom:24px;left:-22px;animation:floaty 4s ease-in-out infinite}
-.fc-2{top:36px;right:-18px;animation:floaty 4.6s ease-in-out infinite .8s}
-@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
-.fc-ic{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+/* hero float cards */
+.float-card{position:absolute;background:#fff;border-radius:18px;padding:15px 19px;box-shadow:var(--shadow);display:flex;align-items:center;gap:12px;font-weight:700;font-size:.9rem;z-index:3;transition:all .3s ease}
+.float-card:hover{transform:scale(1.05)!important;box-shadow:0 30px 60px -15px rgba(94,54,144,.6)}
+.fc-1{bottom:15%;left:8%;animation:floaty 4.5s ease-in-out infinite}
+.fc-2{top:20%;right:8%;animation:floaty 5.2s ease-in-out infinite .5s}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+.fc-ic{width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .fc-1 .fc-ic{background:rgba(90,176,49,.15);color:var(--green-deep)}
 .fc-2 .fc-ic{background:rgba(126,79,176,.13);color:var(--purple)}
 .fc-sub{font-weight:500;font-size:.74rem;color:var(--ink-soft);display:block}
@@ -116,11 +115,11 @@ header.scrolled .brand .logo-pill{height:46px;padding:5px 14px}
 .sec-head h2{font-size:clamp(2rem,4vw,2.9rem);color:var(--ink);margin-bottom:14px}
 .sec-head p{color:var(--ink-soft);font-size:1.08rem}
 
-.reveal{opacity:0;transform:translateY(34px);transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .8s cubic-bezier(.22,1,.36,1)}
+.reveal{opacity:0;transform:translateY(34px);transition:opacity .9s cubic-bezier(.22,1,.36,1),transform .9s cubic-bezier(.22,1,.36,1)}
 .reveal.in{opacity:1;transform:none}
 
 /* ===== About ===== */
-#about{background:#fff;border-radius:48px;margin-top:20px}
+#about{background:#fff;border-radius:48px;margin-top:20px;box-shadow:var(--shadow-sm)}
 .about-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:54px;align-items:center}
 .about-photo{position:relative}
 .about-photo .main{border-radius:30px;overflow:hidden;box-shadow:var(--shadow);aspect-ratio:3/4}
@@ -136,33 +135,37 @@ header.scrolled .brand .logo-pill{height:46px;padding:5px 14px}
 .creds .ci{flex-shrink:0;width:30px;height:30px;border-radius:9px;background:rgba(90,176,49,.13);color:var(--green-deep);display:flex;align-items:center;justify-content:center;margin-top:1px}
 .creds li b{color:var(--ink)}
 
-/* ===== Services ===== */
-.serv-note{text-align:center;color:var(--ink-soft);font-size:.92rem;background:var(--sky);border-radius:16px;padding:13px 20px;max-width:620px;margin:0 auto 34px;font-weight:600}
-.serv-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px}
-.serv{background:#fff;border-radius:var(--r-md);padding:24px 22px;box-shadow:var(--shadow-sm);border:1.5px solid transparent;transition:all .3s;position:relative;overflow:hidden}
-.serv:hover{transform:translateY(-5px);box-shadow:var(--shadow);border-color:rgba(90,176,49,.3)}
-.serv .si{width:50px;height:50px;border-radius:15px;display:flex;align-items:center;justify-content:center;margin-bottom:15px;background:linear-gradient(135deg,rgba(126,79,176,.12),rgba(90,176,49,.12));color:var(--purple)}
-.serv h3{font-size:1.12rem;margin-bottom:5px;color:var(--ink)}
-.serv .meta{font-size:.82rem;color:var(--ink-soft);font-weight:600;display:flex;align-items:center;gap:6px}
-.serv .quote{margin-top:13px;font-size:.82rem;font-weight:700;color:var(--green-deep);display:inline-flex;align-items:center;gap:5px;opacity:0;transform:translateX(-6px);transition:.3s}
+/* ===== Services Groups ===== */
+.serv-note{text-align:center;color:var(--ink-soft);font-size:.92rem;background:var(--sky);border-radius:16px;padding:13px 20px;max-width:620px;margin:0 auto 44px;font-weight:600}
+#servicesContainer{display:flex;flex-direction:column;gap:50px}
+.serv-group{animation:slideUp .8s ease forwards}
+.group-title{font-family:var(--display);font-size:1.65rem;color:var(--ink);margin-bottom:24px;border-bottom:2px solid rgba(126,79,176,.15);padding-bottom:10px;display:inline-block;padding-right:30px}
+.serv-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px}
+.serv{background:#fff;border-radius:var(--r-md);padding:30px 24px;box-shadow:var(--shadow-sm);border:1.5px solid transparent;transition:all .4s cubic-bezier(.175,.885,.32,1.275);position:relative;overflow:hidden;display:flex;flex-direction:column}
+.serv:hover{transform:translateY(-8px) scale(1.02);box-shadow:var(--shadow);border-color:rgba(126,79,176,.4);z-index:2}
+.serv .si{width:54px;height:54px;border-radius:15px;display:flex;align-items:center;justify-content:center;margin-bottom:18px;background:linear-gradient(135deg,rgba(126,79,176,.12),rgba(90,176,49,.12));color:var(--purple);transition:.3s}
+.serv:hover .si{transform:scale(1.1);background:var(--purple);color:#fff}
+.serv h3{font-size:1.15rem;margin-bottom:6px;color:var(--ink)}
+.serv-desc{font-size:.94rem;color:var(--ink-soft);line-height:1.55}
+.serv .meta{font-size:.82rem;color:var(--ink-soft);font-weight:600;display:flex;align-items:center;gap:6px;margin-top:auto;padding-top:18px}
+.serv .quote{margin-top:14px;font-size:.85rem;font-weight:700;color:var(--green-deep);display:inline-flex;align-items:center;gap:5px;opacity:0;transform:translateX(-8px);transition:.4s}
 .serv:hover .quote{opacity:1;transform:none}
 
-/* ===== Gallery ===== */
+/* ===== Gallery Slider ===== */
 #gallery{padding-top:30px}
-.gal-grid{display:grid;grid-template-columns:repeat(12,1fr);grid-auto-rows:160px;gap:14px}
-.gal-item{border-radius:var(--r-md);overflow:hidden;box-shadow:var(--shadow-sm);position:relative}
-.gal-item img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
-.gal-item:hover img{transform:scale(1.07)}
-.gal-item::after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 55%,rgba(94,54,144,.25));opacity:0;transition:.4s}
-.gal-item:hover::after{opacity:1}
-.g1{grid-column:span 5;grid-row:span 2}
-.g2{grid-column:span 4;grid-row:span 1}
-.g3{grid-column:span 3;grid-row:span 1}
-.g4{grid-column:span 4;grid-row:span 1}
-.g5{grid-column:span 3;grid-row:span 1}
-.g6{grid-column:span 4;grid-row:span 2}
-.g7{grid-column:span 4;grid-row:span 1}
-.g8{grid-column:span 4;grid-row:span 1}
+.gallery-container{position:relative;max-width:1080px;margin:0 auto;z-index:1}
+.gallery-container::before{content:"";position:absolute;inset:-15px;background:linear-gradient(45deg,rgba(126,79,176,.6),rgba(90,176,49,.6));filter:blur(35px);opacity:.18;z-index:-1;border-radius:var(--r-lg);animation:pulse-glow 5s infinite alternate}
+@keyframes pulse-glow{0%{opacity:.1}100%{opacity:.3}}
+.slider-wrap{position:relative;width:100%;aspect-ratio:16/9;border-radius:var(--r-lg);overflow:hidden;box-shadow:0 30px 60px -15px rgba(94,54,144,.4);transform:translateZ(0);background:#000}
+.slider{width:100%;height:100%;position:relative}
+.slide{position:absolute;inset:0;opacity:0;transition:opacity 1.2s cubic-bezier(.4,0,.2,1);pointer-events:none}
+.slide.active{opacity:1;z-index:2;pointer-events:auto}
+.slide img{width:100%;height:100%;object-fit:cover;transition:transform 6s ease-out;transform:scale(1.1)}
+.slide.active img{transform:scale(1)}
+.slider-nav{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);display:flex;gap:12px;z-index:10;background:rgba(0,0,0,.4);padding:10px 18px;border-radius:40px;backdrop-filter:blur(8px)}
+.slider-dot{width:12px;height:12px;border-radius:50%;background:rgba(255,255,255,.4);cursor:pointer;transition:all .3s}
+.slider-dot:hover{background:rgba(255,255,255,.9)}
+.slider-dot.active{background:#fff;transform:scale(1.3)}
 
 /* ===== Reviews ===== */
 #reviews{background:linear-gradient(180deg,var(--sky),#fff);border-radius:48px}
@@ -175,7 +178,8 @@ header.scrolled .brand .logo-pill{height:46px;padding:5px 14px}
 .rev-track{display:flex;gap:18px;width:max-content;animation:scrollx 56s linear infinite}
 .rev-track:hover{animation-play-state:paused}
 @keyframes scrollx{to{transform:translateX(-50%)}}
-.rev-card{width:340px;flex-shrink:0;background:#fff;border-radius:var(--r-md);padding:24px;box-shadow:var(--shadow-sm);display:flex;flex-direction:column}
+.rev-card{width:340px;flex-shrink:0;background:#fff;border-radius:var(--r-md);padding:24px;box-shadow:var(--shadow-sm);display:flex;flex-direction:column;transition:transform .3s;border:1px solid transparent}
+.rev-card:hover{transform:translateY(-4px);border-color:rgba(126,79,176,.15);box-shadow:var(--shadow)}
 .rev-card .rc-top{display:flex;align-items:center;gap:12px;margin-bottom:14px}
 .rev-card .av{width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:600;color:#fff;font-size:1.2rem;flex-shrink:0}
 .rev-card .rc-name{font-family:var(--display);font-weight:600;color:var(--ink);font-size:1rem;line-height:1.1}
@@ -202,20 +206,21 @@ header.scrolled .brand .logo-pill{height:46px;padding:5px 14px}
 .hours-list .hr.closed .h{color:var(--red);font-weight:600}
 .socials{display:flex;gap:11px;margin-top:22px}
 .socials a{width:44px;height:44px;border-radius:13px;display:flex;align-items:center;justify-content:center;background:var(--sky);color:var(--purple);transition:all .25s}
-.socials a:hover{background:var(--purple);color:#fff;transform:translateY(-3px)}
+.socials a:hover{background:var(--purple);color:#fff;transform:translateY(-3px);box-shadow:0 10px 20px -8px rgba(126,79,176,.6)}
 .map-card{border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--shadow-sm);min-height:440px;background:var(--sky);position:relative}
 .map-card iframe{width:100%;height:100%;border:0;min-height:440px}
 
 /* ===== CTA banner ===== */
 .cta-band{max-width:var(--maxw);margin:30px auto 0;padding:0 26px}
-.cta-inner{background:linear-gradient(120deg,var(--purple),var(--purple-deep));border-radius:var(--r-lg);padding:54px 44px;text-align:center;color:#fff;box-shadow:var(--shadow);position:relative;overflow:hidden}
+.cta-inner{background:linear-gradient(120deg,var(--purple),var(--purple-deep));border-radius:var(--r-lg);padding:54px 44px;text-align:center;color:#fff;box-shadow:var(--shadow);position:relative;overflow:hidden;transition:transform .4s}
+.cta-inner:hover{transform:scale(1.01)}
 .cta-inner h2{font-size:clamp(1.8rem,3.5vw,2.6rem);margin-bottom:12px;color:#fff}
 .cta-inner p{opacity:.92;margin-bottom:28px;font-size:1.08rem;max-width:520px;margin-left:auto;margin-right:auto}
-.cta-inner .btn-primary{background:#fff;color:var(--purple)}
-.cta-inner .btn-primary:hover{background:var(--cream)}
+.cta-inner .btn-primary{background:#fff;color:var(--purple);box-shadow:0 15px 30px -10px rgba(0,0,0,.3)}
+.cta-inner .btn-primary:hover{background:var(--cream);box-shadow:0 20px 40px -10px rgba(0,0,0,.4)}
 .cta-blob{position:absolute;border-radius:50%;background:rgba(255,255,255,.08)}
-.cb1{width:200px;height:200px;top:-70px;left:-40px}
-.cb2{width:150px;height:150px;bottom:-60px;right:30px}
+.cb1{width:200px;height:200px;top:-70px;left:-40px;animation:floaty 6s infinite alternate}
+.cb2{width:150px;height:150px;bottom:-60px;right:30px;animation:floaty 7s infinite alternate-reverse}
 
 /* ===== Footer ===== */
 footer{background:var(--ink);color:#fff;margin-top:84px;padding:54px 26px 30px}
@@ -238,27 +243,27 @@ footer{background:var(--ink);color:#fff;margin-top:84px;padding:54px 26px 30px}
 .mobile-menu a{font-family:var(--display);font-size:1.5rem;font-weight:600;color:var(--ink);padding:12px}
 .mobile-menu a.m-cta{background:var(--green);color:#fff;border-radius:50px;padding:14px 34px;margin-top:14px}
 
+@media(max-width:1100px){
+  .fc-1{left:2%;bottom:12%;transform:scale(.85)}
+  .fc-2{right:2%;top:18%;transform:scale(.85)}
+}
 @media(max-width:980px){
-  .hero{grid-template-columns:1fr;gap:40px;padding-top:130px;min-height:auto}
-  .hero-visual{max-width:440px;margin:0 auto}
   .about-grid{grid-template-columns:1fr;gap:54px}
   .about-photo{max-width:380px;margin:0 auto}
   .contact-grid{grid-template-columns:1fr}
-  .gal-grid{grid-auto-rows:140px}
-  .nav-links{display:none}
-  .nav-cta{display:none}
+  .nav-links,.nav-cta{display:none}
   .burger{display:flex}
   .foot{grid-template-columns:1fr 1fr;gap:30px}
   .foot-brand{grid-column:1/-1}
 }
+@media(max-width:768px){
+  .hero{min-height:85vh;padding-top:140px}
+  .float-card{display:none}
+  .slider-wrap{aspect-ratio:1/1}
+}
 @media(max-width:560px){
-  .gal-grid{grid-template-columns:repeat(2,1fr);grid-auto-rows:130px}
-  .g1,.g2,.g3,.g4,.g5,.g6,.g7,.g8{grid-column:span 1;grid-row:span 1}
-  .g1{grid-column:span 2;grid-row:span 2}
-  .g6{grid-column:span 2}
   .hero-trust{gap:18px}
   .section{padding:60px 20px}
-  .float-card{display:none}
   .foot{grid-template-columns:1fr}
 }
 @media(prefers-reduced-motion:reduce){
@@ -271,7 +276,6 @@ footer{background:var(--ink);color:#fff;margin-top:84px;padding:54px 26px 30px}
 </head>
 <body>
 
-<!-- ===== Loader ===== -->
 <div id="loader">
   <div class="cradle-load">
     <svg viewBox="0 0 100 100">
@@ -285,7 +289,6 @@ footer{background:var(--ink);color:#fff;margin-top:84px;padding:54px 26px 30px}
   <span data-el="Φροντίδα με αγάπη…" data-en="Care with love…">Φροντίδα με αγάπη…</span>
 </div>
 
-<!-- ===== Header ===== -->
 <header id="header">
   <nav class="nav">
     <a href="#top" class="brand">
@@ -324,16 +327,13 @@ footer{background:var(--ink);color:#fff;margin-top:84px;padding:54px 26px 30px}
 
 <span id="top"></span>
 
-<!-- ===== Hero ===== -->
 <section class="hero">
-  <div class="blob b1"></div>
-  <div class="blob b2"></div>
   <div class="hero-copy">
     <span class="eyebrow"><span class="dot"></span><span data-el="Ιδιωτικό Ιατρείο · Νέος Κόσμος" data-en="Private Practice · Neos Kosmos">Ιδιωτικό Ιατρείο · Νέος Κόσμος</span></span>
     <h1>
       <span data-el="Φροντίδα που τα παιδιά" data-en="Care that children">Φροντίδα που τα παιδιά</span>
       <span class="hl" data-el="αγαπούν" data-en="adore">αγαπούν<svg viewBox="0 0 200 16" preserveAspectRatio="none"><path d="M2,11 Q60,2 100,8 T198,7" fill="none" stroke="#5AB031" stroke-width="5" stroke-linecap="round"/></svg></span>
-      <span data-el="κι οι γονείς εμπιστεύονται." data-en="and parents trust.">κι οι γονείς εμπιστεύονται.</span>
+      <br><span data-el="κι οι γονείς εμπιστεύονται." data-en="and parents trust.">κι οι γονείς εμπιστεύονται.</span>
     </h1>
     <p class="lead" data-el="Ο παιδίατρος Ιωάννης Κ. Λουκάς προσφέρει ζεστή, προσεκτική και εξατομικευμένη φροντίδα — από το νεογέννητο μέχρι την εφηβεία — σε έναν χώρο φτιαγμένο για να νιώθουν ασφαλή τα μικρά σας." data-en="Pediatrician Ioannis K. Loukas offers warm, attentive and personalised care — from newborn to adolescence — in a space designed to make your little ones feel safe.">Ο παιδίατρος Ιωάννης Κ. Λουκάς προσφέρει ζεστή, προσεκτική και εξατομικευμένη φροντίδα — από το νεογέννητο μέχρι την εφηβεία — σε έναν χώρο φτιαγμένο για να νιώθουν ασφαλή τα μικρά σας.</p>
     <div class="hero-cta">
@@ -349,22 +349,17 @@ footer{background:var(--ink);color:#fff;margin-top:84px;padding:54px 26px 30px}
       <div class="t"><b>0–18</b><span data-el="Ετών φροντίδα" data-en="Years of age">Ετών φροντίδα</span></div>
     </div>
   </div>
-  <div class="hero-visual">
-    <div class="hero-photo">
-      <img src="IMG_8257.jpg" alt="Ιωάννης Κ. Λουκάς, Παιδίατρος">
-    </div>
-    <div class="float-card fc-1">
-      <span class="fc-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></span>
-      <span data-el="Φιλικός με τα παιδιά<span class='fc-sub'>χωρίς φόβο, με χαμόγελο</span>" data-en="Child-friendly<span class='fc-sub'>no fear, all smiles</span>">Φιλικός με τα παιδιά<span class="fc-sub">χωρίς φόβο, με χαμόγελο</span></span>
-    </div>
-    <div class="float-card fc-2">
-      <span class="fc-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-      <span data-el="Άμεση επικοινωνία<span class='fc-sub'>πάντα διαθέσιμος</span>" data-en="Always reachable<span class='fc-sub'>quick to respond</span>">Άμεση επικοινωνία<span class="fc-sub">πάντα διαθέσιμος</span></span>
-    </div>
+  
+  <div class="float-card fc-1">
+    <span class="fc-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></span>
+    <span data-el="Φιλικός με τα παιδιά<span class='fc-sub'>χωρίς φόβο, με χαμόγελο</span>" data-en="Child-friendly<span class='fc-sub'>no fear, all smiles</span>">Φιλικός με τα παιδιά<span class="fc-sub">χωρίς φόβο, με χαμόγελο</span></span>
+  </div>
+  <div class="float-card fc-2">
+    <span class="fc-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+    <span data-el="Άμεση επικοινωνία<span class='fc-sub'>πάντα διαθέσιμος</span>" data-en="Always reachable<span class='fc-sub'>quick to respond</span>">Άμεση επικοινωνία<span class="fc-sub">πάντα διαθέσιμος</span></span>
   </div>
 </section>
 
-<!-- ===== About ===== -->
 <section class="section" id="about">
   <div class="about-grid">
     <div class="about-photo reveal">
@@ -390,7 +385,6 @@ footer{background:var(--ink);color:#fff;margin-top:84px;padding:54px 26px 30px}
   </div>
 </section>
 
-<!-- ===== Services ===== -->
 <section class="section" id="services">
   <div class="sec-head reveal">
     <span class="sec-label" data-el="Υπηρεσίες" data-en="Services">Υπηρεσίες</span>
@@ -398,29 +392,25 @@ footer{background:var(--ink);color:#fff;margin-top:84px;padding:54px 26px 30px}
     <p data-el="Από την πρώτη μέρα ζωής μέχρι την εφηβεία — με προσοχή στη λεπτομέρεια και αγάπη σε κάθε επίσκεψη." data-en="From the first day of life through adolescence — with attention to detail and care at every visit.">Από την πρώτη μέρα ζωής μέχρι την εφηβεία — με προσοχή στη λεπτομέρεια και αγάπη σε κάθε επίσκεψη.</p>
   </div>
   <div class="serv-note reveal" data-el="Τα κόστη είναι ενδεικτικά και ενδέχεται να διαφοροποιηθούν ανάλογα με το περιστατικό κατά την επίσκεψη." data-en="Prices are indicative and may vary depending on the case during the visit.">Τα κόστη είναι ενδεικτικά και ενδέχεται να διαφοροποιηθούν ανάλογα με το περιστατικό κατά την επίσκεψη.</div>
-  <div class="serv-grid" id="servGrid"></div>
+  
+  <div id="servicesContainer">
+    </div>
 </section>
 
-<!-- ===== Gallery ===== -->
 <section class="section" id="gallery">
   <div class="sec-head reveal">
     <span class="sec-label" data-el="Ο Χώρος" data-en="The Space">Ο Χώρος</span>
     <h2 data-el="Ένα ιατρείο φτιαγμένο για παιδιά" data-en="A practice built for children">Ένα ιατρείο φτιαγμένο για παιδιά</h2>
     <p data-el="Χρώματα, παιχνίδι και ζεστασιά — γιατί ένα παιδί που νιώθει άνετα, εξετάζεται καλύτερα." data-en="Colour, play and warmth — because a child who feels at ease is examined better.">Χρώματα, παιχνίδι και ζεστασιά — γιατί ένα παιδί που νιώθει άνετα, εξετάζεται καλύτερα.</p>
   </div>
-  <div class="gal-grid reveal">
-    <div class="gal-item g1"><img src="IMG_8054.jpg" alt="Χώρος παιχνιδιού"></div>
-    <div class="gal-item g2"><img src="IMG_8135.JPG" alt="Παιδική αίθουσα αναμονής"></div>
-    <div class="gal-item g3"><img src="IMG_8073.JPG" alt="Τσουλήθρα"></div>
-    <div class="gal-item g4"><img src="IMG_8265.JPG" alt="Γραφείο ιατρού"></div>
-    <div class="gal-item g5"><img src="IMG_8098.JPG" alt="Δέντρο με ζωάκια"></div>
-    <div class="gal-item g6"><img src="IMG_8219.JPG" alt="Ο ιατρός στο ιατρείο"></div>
-    <div class="gal-item g7"><img src="IMG_8282.jpg" alt="Πινακίδα ιατρείου"></div>
-    <div class="gal-item g8"><img src="IMG_8257.jpg" alt="Ο ιατρός"></div>
+  <div class="gallery-container reveal">
+    <div class="slider-wrap">
+      <div class="slider" id="spaceSlider"></div>
+      <div class="slider-nav" id="sliderNav"></div>
+    </div>
   </div>
 </section>
 
-<!-- ===== Reviews ===== -->
 <section class="section" id="reviews">
   <div class="sec-head reveal">
     <span class="sec-label" data-el="Αξιολογήσεις" data-en="Reviews">Αξιολογήσεις</span>
@@ -446,7 +436,6 @@ footer{background:var(--ink);color:#fff;margin-top:84px;padding:54px 26px 30px}
   </div>
 </section>
 
-<!-- ===== CTA band ===== -->
 <div class="cta-band reveal">
   <div class="cta-inner">
     <div class="cta-blob cb1"></div>
@@ -460,7 +449,6 @@ footer{background:var(--ink);color:#fff;margin-top:84px;padding:54px 26px 30px}
   </div>
 </div>
 
-<!-- ===== Contact ===== -->
 <section class="section" id="contact">
   <div class="sec-head reveal">
     <span class="sec-label" data-el="Επικοινωνία" data-en="Contact">Επικοινωνία</span>
@@ -495,7 +483,6 @@ footer{background:var(--ink);color:#fff;margin-top:84px;padding:54px 26px 30px}
   </div>
 </section>
 
-<!-- ===== Footer ===== -->
 <footer>
   <div class="foot">
     <div class="foot-brand">
@@ -523,26 +510,27 @@ footer{background:var(--ink);color:#fff;margin-top:84px;padding:54px 26px 30px}
   </div>
   <div class="foot-bottom">
     <span data-el="© 2026 Ιωάννης Κ. Λουκάς, Παιδίατρος. Με επιφύλαξη παντός δικαιώματος." data-en="© 2026 Ioannis K. Loukas, Pediatrician. All rights reserved.">© 2026 Ιωάννης Κ. Λουκάς, Παιδίατρος. Με επιφύλαξη παντός δικαιώματος.</span>
-    <span class="advon" data-el="Σχεδιασμός &amp; ανάπτυξη από <b>Advon Media</b>" data-en="Designed &amp; developed by <b>Advon Media</b>">Σχεδιασμός &amp; ανάπτυξη από <b>Advon Media</b></span>
+    <span class="advon" data-el="Σχεδιασμός & ανάπτυξη από <b>Advon Media</b>" data-en="Designed & developed by <b>Advon Media</b>">Σχεδιασμός & ανάπτυξη από <b>Advon Media</b></span>
   </div>
 </footer>
 
 <script>
 /* ===== data ===== */
 const SERVICES=[
-  {ic:'stethoscope',el:'Απλή επίσκεψη',en:'Standard visit',min:30,price:1},
-  {ic:'pill',el:'Ηλεκτρονική συνταγογράφηση',en:'E-prescription',min:30,price:1},
-  {ic:'allergy',el:'Αντιμετώπιση αλλεργίας',en:'Allergy management',min:30,price:0},
-  {ic:'stomach',el:'Γαστροοισοφαγική παλινδρόμηση',en:'Acid reflux management',min:30,price:0},
-  {ic:'skin',el:'Αντιμετώπιση εκζέματος',en:'Eczema management',min:30,price:0},
-  {ic:'jaundice',el:'Αντιμετώπιση ίκτερου',en:'Jaundice management',min:30,price:0},
-  {ic:'syringe',el:'Εμβολιασμός',en:'Vaccination',min:30,price:1},
-  {ic:'flu',el:'Εμβόλιο γρίπης',en:'Flu vaccine',min:30,price:0},
-  {ic:'newborn',el:'Επίσκεψη νεογέννητου',en:'Newborn visit',min:30,price:1},
-  {ic:'home',el:"Κατ' οίκον επίσκεψη",en:'Home visit',min:30,price:1},
-  {ic:'breast',el:'Οδηγίες θηλασμού',en:'Breastfeeding guidance',min:30,price:0},
-  {ic:'pregnancy',el:'Παρακολούθηση εγκυμοσύνης',en:'Pregnancy monitoring',min:30,price:0}
+  {groupEl:'Γενική Φροντίδα & Πρόληψη', groupEn:'General Care & Prevention', ic:'stethoscope', el:'Απλή επίσκεψη', en:'Standard visit', min:30, price:1, descEl:'Πλήρης κλινική εξέταση για την παρακολούθηση της υγείας και της σωστής ανάπτυξης του παιδιού.', descEn:'Comprehensive clinical examination to monitor the child\'s health and proper development.'},
+  {groupEl:'Γενική Φροντίδα & Πρόληψη', groupEn:'General Care & Prevention', ic:'pill', el:'Ηλεκτρονική συνταγογράφηση', en:'E-prescription', min:30, price:1, descEl:'Άμεση και ασφαλής έκδοση συνταγών για φάρμακα ή εξετάσεις, εξοικονομώντας σας πολύτιμο χρόνο.', descEn:'Immediate and safe issuance of prescriptions for medications or tests, saving you valuable time.'},
+  {groupEl:'Εξειδικευμένη Αντιμετώπιση', groupEn:'Specialized Care', ic:'allergy', el:'Αντιμετώπιση αλλεργίας', en:'Allergy management', min:30, price:0, descEl:'Έγκαιρη διάγνωση και εξειδικευμένο θεραπευτικό πλάνο για την ανακούφιση των αλλεργικών συμπτωμάτων.', descEn:'Timely diagnosis and specialized treatment plan for the relief of allergic symptoms.'},
+  {groupEl:'Εξειδικευμένη Αντιμετώπιση', groupEn:'Specialized Care', ic:'stomach', el:'Γαστροοισοφαγική παλινδρόμηση', en:'Acid reflux management', min:30, price:0, descEl:'Αξιολόγηση και αντιμετώπιση της παλινδρόμησης με κατάλληλες διατροφικές οδηγίες και ιατρική καθοδήγηση.', descEn:'Evaluation and management of reflux with appropriate dietary guidelines and medical guidance.'},
+  {groupEl:'Εξειδικευμένη Αντιμετώπιση', groupEn:'Specialized Care', ic:'skin', el:'Αντιμετώπιση εκζέματος', en:'Eczema management', min:30, price:0, descEl:'Εξατομικευμένη θεραπεία και καθημερινή φροντίδα για την ατοπική δερματίτιδα και το ευαίσθητο δέρμα.', descEn:'Personalized treatment and daily care for atopic dermatitis and sensitive skin.'},
+  {groupEl:'Εξειδικευμένη Αντιμετώπιση', groupEn:'Specialized Care', ic:'jaundice', el:'Αντιμετώπιση ίκτερου', en:'Jaundice management', min:30, price:0, descEl:'Στενή παρακολούθηση των επιπέδων χολερυθρίνης σε νεογνά και ασφαλής καθοδήγηση μέχρι την πλήρη υποχώρηση.', descEn:'Close monitoring of bilirubin levels in newborns and safe guidance until full resolution.'},
+  {groupEl:'Γενική Φροντίδα & Πρόληψη', groupEn:'General Care & Prevention', ic:'syringe', el:'Εμβολιασμός', en:'Vaccination', min:30, price:1, descEl:'Χορήγηση όλων των απαραίτητων εμβολίων βάσει του εθνικού προγράμματος για τη θωράκιση του οργανισμού.', descEn:'Administration of all necessary vaccines based on the national schedule to shield the immune system.'},
+  {groupEl:'Γενική Φροντίδα & Πρόληψη', groupEn:'General Care & Prevention', ic:'flu', el:'Εμβόλιο γρίπης', en:'Flu vaccine', min:30, price:0, descEl:'Εποχιακός εμβολιασμός που εξασφαλίζει την προστασία του παιδιού από τον ιό της γρίπης.', descEn:'Seasonal vaccination ensuring the child\'s protection against the flu virus.'},
+  {groupEl:'Βρέφη & Εγκυμοσύνη', groupEn:'Infants & Pregnancy', ic:'newborn', el:'Επίσκεψη νεογέννητου', en:'Newborn visit', min:30, price:1, descEl:'Ο πρώτος και σημαντικότερος έλεγχος του βρέφους, συνοδευόμενος από πολύτιμες συμβουλές για τους νέους γονείς.', descEn:'The first and most important check-up of the infant, accompanied by valuable advice for new parents.'},
+  {groupEl:"Κατ' Οίκον & Έκτακτα", groupEn:'Home & Urgent Care', ic:'home', el:"Κατ' οίκον επίσκεψη", en:'Home visit', min:30, price:1, descEl:'Ολοκληρωμένη ιατρική φροντίδα στην άνεση του σπιτιού σας, ιδανική επιλογή όταν το παιδί νοσεί.', descEn:'Comprehensive medical care in the comfort of your home, an ideal choice when the child is sick.'},
+  {groupEl:'Βρέφη & Εγκυμοσύνη', groupEn:'Infants & Pregnancy', ic:'breast', el:'Οδηγίες θηλασμού', en:'Breastfeeding guidance', min:30, price:0, descEl:'Πρακτικές συμβουλές και ψυχολογική υποστήριξη για την εδραίωση ενός επιτυχημένου και ήρεμου θηλασμού.', descEn:'Practical advice and psychological support to establish successful and peaceful breastfeeding.'},
+  {groupEl:'Βρέφη & Εγκυμοσύνη', groupEn:'Infants & Pregnancy', ic:'pregnancy', el:'Παρακολούθηση εγκυμοσύνης', en:'Pregnancy monitoring', min:30, price:0, descEl:'Συμβουλευτική μελλοντικών γονέων για την κατάλληλη προετοιμασία και την ομαλή υποδοχή του νεογνού.', descEn:'Consultation for expectant parents for proper preparation and smooth welcoming of the newborn.'}
 ];
+
 const ICONS={
   stethoscope:'<path d="M4 3v6a5 5 0 0 0 10 0V3"/><path d="M14 9v3a6 6 0 0 0 6 6"/><circle cx="20" cy="15" r="2.5"/>',
   pill:'<rect x="3" y="10" width="18" height="6" rx="3" transform="rotate(-45 12 12)"/><path d="M8.5 8.5l7 7"/>',
@@ -587,25 +575,45 @@ const HOURS=[
 ];
 let LANG='el';
 
-/* render services */
-const sg=document.getElementById('servGrid');
-SERVICES.forEach(s=>{
-  const el=document.createElement('div');el.className='serv';
-  el.innerHTML=`<div class="si"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${ICONS[s.ic]}</svg></div>
-  <h3 data-el="${s.el}" data-en="${s.en}">${s.el}</h3>
-  <div class="meta"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg><span data-el="30 λεπτά" data-en="30 min">30 λεπτά</span></div>
-  <a href="tel:+302109013119" class="quote" data-el="Στείλτε αίτημα κόστους →" data-en="Request a quote →">Στείλτε αίτημα κόστους →</a>`;
-  sg.appendChild(el);
-});
+/* ===== render services (grouped) ===== */
+const sc = document.getElementById('servicesContainer');
+const groupedServices = SERVICES.reduce((acc, s) => {
+  if(!acc[s.groupEl]) acc[s.groupEl] = {en: s.groupEn, items: []};
+  acc[s.groupEl].items.push(s);
+  return acc;
+}, {});
 
-/* render reviews (doubled for seamless loop) */
+for(const [gEl, data] of Object.entries(groupedServices)){
+  const groupDiv = document.createElement('div');
+  groupDiv.className = 'serv-group reveal';
+  groupDiv.innerHTML = `<h3 class="group-title" data-el="${gEl}" data-en="${data.en}">${gEl}</h3><div class="serv-grid"></div>`;
+  sc.appendChild(groupDiv);
+  
+  const grid = groupDiv.querySelector('.serv-grid');
+  data.items.forEach(s => {
+    const el = document.createElement('div'); el.className = 'serv';
+    el.innerHTML = `
+      <div class="si"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${ICONS[s.ic]}</svg></div>
+      <h3 data-el="${s.el}" data-en="${s.en}">${s.el}</h3>
+      <p class="serv-desc" data-el="${s.descEl}" data-en="${s.descEn}">${s.descEl}</p>
+      <div class="meta">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        <span data-el="30 λεπτά" data-en="30 min">30 λεπτά</span>
+      </div>
+      <a href="tel:+302109013119" class="quote" data-el="Στείλτε αίτημα κόστους →" data-en="Request a quote →">Στείλτε αίτημα κόστους →</a>
+    `;
+    grid.appendChild(el);
+  });
+}
+
+/* ===== render reviews ===== */
 const palette=['#7E4FB0','#5AB031','#2F8FD6','#E8453C','#FFA51E'];
 const rt=document.getElementById('revTrack');
 function avatar(name,i){const init=name.trim()[0]||'★';return `<span class="av" style="background:${palette[i%palette.length]}">${init}</span>`}
 function revCard(r,i){return `<div class="rev-card"><div class="rc-top">${avatar(r.n,i)}<div><div class="rc-name">${r.n}</div><div class="rc-stars">★★★★★</div></div></div><p data-el="${r.t.replace(/"/g,'&quot;')}" data-en="${r.e.replace(/"/g,'&quot;')}">${r.t}</p></div>`}
 rt.innerHTML=REVIEWS.map(revCard).join('')+REVIEWS.map(revCard).join('');
 
-/* render hours */
+/* ===== render hours ===== */
 const hl=document.getElementById('hoursList');
 const todayJs=new Date().getDay();
 HOURS.forEach(h=>{
@@ -615,7 +623,54 @@ HOURS.forEach(h=>{
   hl.appendChild(row);
 });
 
-/* language toggle */
+/* ===== gallery slider ===== */
+const SPACE_IMGS = [
+  'https://raw.githubusercontent.com/agelmet/LOUKAS/refs/heads/main/IMG_8054.jpg',
+  'IMG_8135.JPG',
+  'IMG_8073.JPG',
+  'IMG_8265.JPG',
+  'IMG_8098.JPG',
+  'IMG_8282.jpg'
+];
+const spaceSlider = document.getElementById('spaceSlider');
+const sliderNav = document.getElementById('sliderNav');
+
+SPACE_IMGS.forEach((src, i) => {
+  const slide = document.createElement('div');
+  slide.className = 'slide' + (i === 0 ? ' active' : '');
+  slide.innerHTML = `<img src="${src}" alt="Ιατρείο ${i+1}">`;
+  spaceSlider.appendChild(slide);
+
+  const dot = document.createElement('div');
+  dot.className = 'slider-dot' + (i === 0 ? ' active' : '');
+  dot.addEventListener('click', () => goToSlide(i));
+  sliderNav.appendChild(dot);
+});
+
+let currentSlide = 0;
+let slideInterval;
+const slides = document.getElementsByClassName('slide');
+const dots = document.getElementsByClassName('slider-dot');
+
+function goToSlide(n) {
+  if(!slides.length) return;
+  slides[currentSlide].classList.remove('active');
+  dots[currentSlide].classList.remove('active');
+  currentSlide = n;
+  slides[currentSlide].classList.add('active');
+  dots[currentSlide].classList.add('active');
+  resetInterval();
+}
+function nextSlide() {
+  goToSlide((currentSlide + 1) % SPACE_IMGS.length);
+}
+function resetInterval() {
+  clearInterval(slideInterval);
+  slideInterval = setInterval(nextSlide, 3000);
+}
+resetInterval();
+
+/* ===== language toggle ===== */
 function setLang(l){
   LANG=l;
   document.documentElement.lang=l;
@@ -627,20 +682,20 @@ function setLang(l){
 }
 document.querySelectorAll('.lang button').forEach(b=>b.addEventListener('click',()=>setLang(b.dataset.lang)));
 
-/* nav scroll */
+/* ===== nav scroll ===== */
 const header=document.getElementById('header');
 addEventListener('scroll',()=>header.classList.toggle('scrolled',scrollY>30));
 
-/* mobile menu */
+/* ===== mobile menu ===== */
 const burger=document.getElementById('burger'),mm=document.getElementById('mobileMenu');
 burger.addEventListener('click',()=>{burger.classList.toggle('open');mm.classList.toggle('open')});
 mm.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{burger.classList.remove('open');mm.classList.remove('open')}));
 
-/* reveal */
+/* ===== reveal ===== */
 const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
 document.querySelectorAll('.reveal').forEach(n=>io.observe(n));
 
-/* loader */
+/* ===== loader ===== */
 addEventListener('load',()=>setTimeout(()=>document.getElementById('loader').classList.add('done'),650));
 </script>
 </body>
