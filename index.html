@@ -23,7 +23,6 @@
   --yellow:#FFC42E;
   --blue:#2F8FD6;
   --white:#ffffff;
-  /* Enhanced overall shadows for deeper, richer aesthetics */
   --shadow:0 25px 60px -15px rgba(94,54,144,.45);
   --shadow-sm:0 12px 35px -12px rgba(94,54,144,.35);
   --shadow-glow:0 0 35px rgba(126,79,176,.25);
@@ -55,9 +54,8 @@ header{position:fixed;top:0;left:0;right:0;z-index:900;transition:all .35s ease;
 header.scrolled{background:rgba(251,248,242,.86);backdrop-filter:blur(14px);box-shadow:0 6px 30px -20px rgba(94,54,144,.5);padding:9px 0}
 .nav{max-width:var(--maxw);margin:0 auto;padding:0 26px;display:flex;align-items:center;justify-content:space-between;gap:18px}
 .brand{display:flex;align-items:center;gap:12px;flex-shrink:0}
-.brand .logo-pill{background:#fff;border-radius:60px;padding:7px 16px;box-shadow:var(--shadow-sm);display:flex;align-items:center;height:54px;transition:height .35s}
-header.scrolled .brand .logo-pill{height:46px;padding:5px 14px}
-.brand img{height:100%;width:auto;object-fit:contain}
+.logo-img{width:75px;height:75px;border-radius:50%;object-fit:cover;box-shadow:var(--shadow-sm);transition:all .35s ease;background:#fff;border:2px solid #fff}
+header.scrolled .logo-img{width:54px;height:54px}
 .nav-links{display:flex;align-items:center;gap:6px}
 .nav-links a{font-weight:600;font-size:.95rem;color:var(--ink-soft);padding:9px 14px;border-radius:40px;transition:all .25s}
 .nav-links a:hover{color:var(--purple);background:rgba(126,79,176,.09)}
@@ -136,40 +134,39 @@ header.scrolled .brand .logo-pill{height:46px;padding:5px 14px}
 .creds li b{color:var(--ink)}
 
 /* ===== Services Groups ===== */
-.serv-note{text-align:center;color:var(--ink-soft);font-size:.92rem;background:var(--sky);border-radius:16px;padding:13px 20px;max-width:620px;margin:0 auto 44px;font-weight:600}
 #servicesContainer{display:flex;flex-direction:column;gap:50px}
 .serv-group{animation:slideUp .8s ease forwards}
-.group-title{font-family:var(--display);font-size:1.65rem;color:var(--ink);margin-bottom:24px;border-bottom:2px solid rgba(126,79,176,.15);padding-bottom:10px;display:inline-block;padding-right:30px}
-.serv-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px}
-.serv{background:#fff;border-radius:var(--r-md);padding:30px 24px;box-shadow:var(--shadow-sm);border:1.5px solid transparent;transition:all .4s cubic-bezier(.175,.885,.32,1.275);position:relative;overflow:hidden;display:flex;flex-direction:column}
-.serv:hover{transform:translateY(-8px) scale(1.02);box-shadow:var(--shadow);border-color:rgba(126,79,176,.4);z-index:2}
-.serv .si{width:54px;height:54px;border-radius:15px;display:flex;align-items:center;justify-content:center;margin-bottom:18px;background:linear-gradient(135deg,rgba(126,79,176,.12),rgba(90,176,49,.12));color:var(--purple);transition:.3s}
-.serv:hover .si{transform:scale(1.1);background:var(--purple);color:#fff}
-.serv h3{font-size:1.15rem;margin-bottom:6px;color:var(--ink)}
-.serv-desc{font-size:.94rem;color:var(--ink-soft);line-height:1.55}
-.serv .meta{font-size:.82rem;color:var(--ink-soft);font-weight:600;display:flex;align-items:center;gap:6px;margin-top:auto;padding-top:18px}
-.serv .quote{margin-top:14px;font-size:.85rem;font-weight:700;color:var(--green-deep);display:inline-flex;align-items:center;gap:5px;opacity:0;transform:translateX(-8px);transition:.4s}
-.serv:hover .quote{opacity:1;transform:none}
+.group-title{font-family:var(--display);font-size:1.5rem;color:var(--ink);margin-bottom:20px;display:inline-block}
+.serv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.serv{background:#fff;border-radius:var(--r-md);padding:16px 20px;box-shadow:var(--shadow-sm);border:1.5px solid transparent;transition:all .3s;display:flex;align-items:center;gap:14px;flex-direction:row;cursor:default}
+.serv:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:rgba(126,79,176,.3)}
+.serv .si{width:46px;height:46px;border-radius:14px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,rgba(126,79,176,.12),rgba(90,176,49,.12));color:var(--purple);transition:.3s;flex-shrink:0}
+.serv:hover .si{transform:scale(1.08);background:var(--purple);color:#fff}
+.serv h3{font-size:1.02rem;margin:0;color:var(--ink);line-height:1.2;font-weight:600}
 
 /* ===== Gallery Slider ===== */
 #gallery{padding-top:30px}
 .gallery-container{position:relative;max-width:1080px;margin:0 auto;z-index:1}
 .gallery-container::before{content:"";position:absolute;inset:-15px;background:linear-gradient(45deg,rgba(126,79,176,.6),rgba(90,176,49,.6));filter:blur(35px);opacity:.18;z-index:-1;border-radius:var(--r-lg);animation:pulse-glow 5s infinite alternate}
 @keyframes pulse-glow{0%{opacity:.1}100%{opacity:.3}}
-.slider-wrap{position:relative;width:100%;aspect-ratio:16/9;border-radius:var(--r-lg);overflow:hidden;box-shadow:0 30px 60px -15px rgba(94,54,144,.4);transform:translateZ(0);background:#000}
+.slider-wrap{position:relative;width:100%;aspect-ratio:16/9;border-radius:var(--r-lg);overflow:hidden;box-shadow:0 30px 60px -15px rgba(94,54,144,.4);transform:translateZ(0);background:var(--sky-deep)}
 .slider{width:100%;height:100%;position:relative}
-.slide{position:absolute;inset:0;opacity:0;transition:opacity 1.2s cubic-bezier(.4,0,.2,1);pointer-events:none}
+.slide{position:absolute;inset:0;opacity:0;transition:opacity .8s cubic-bezier(.4,0,.2,1);pointer-events:none}
 .slide.active{opacity:1;z-index:2;pointer-events:auto}
-.slide img{width:100%;height:100%;object-fit:cover;transition:transform 6s ease-out;transform:scale(1.1)}
-.slide.active img{transform:scale(1)}
-.slider-nav{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);display:flex;gap:12px;z-index:10;background:rgba(0,0,0,.4);padding:10px 18px;border-radius:40px;backdrop-filter:blur(8px)}
-.slider-dot{width:12px;height:12px;border-radius:50%;background:rgba(255,255,255,.4);cursor:pointer;transition:all .3s}
+.slide img{width:100%;height:100%;object-fit:contain;object-position:center}
+.slider-nav{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);display:flex;gap:12px;z-index:10;background:rgba(0,0,0,.3);padding:10px 18px;border-radius:40px;backdrop-filter:blur(8px)}
+.slider-dot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.5);cursor:pointer;transition:all .3s}
 .slider-dot:hover{background:rgba(255,255,255,.9)}
-.slider-dot.active{background:#fff;transform:scale(1.3)}
+.slider-dot.active{background:#fff;transform:scale(1.4)}
 
-/* ===== Reviews ===== */
+/* ===== Reviews (Split Layout) ===== */
 #reviews{background:linear-gradient(180deg,var(--sky),#fff);border-radius:48px}
-.rev-top{display:flex;align-items:center;justify-content:center;gap:18px;flex-wrap:wrap;margin-bottom:14px}
+.reviews-layout{display:grid;grid-template-columns:.85fr 1.15fr;gap:60px;align-items:center}
+.rev-img-box{border-radius:36px;overflow:hidden;box-shadow:var(--shadow);aspect-ratio:4/5;position:relative}
+.rev-img-box img{width:100%;height:100%;object-fit:cover;display:block}
+.rev-right{display:flex;flex-direction:column;overflow:hidden}
+.sec-head-left{text-align:left;margin:0 0 34px 0;max-width:none}
+.rev-top{display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-bottom:14px}
 .score-badge{display:flex;align-items:center;gap:14px;background:#fff;border-radius:24px;padding:14px 22px;box-shadow:var(--shadow-sm)}
 .score-badge .num{font-family:var(--display);font-size:2.6rem;color:var(--green-deep);line-height:1}
 .score-badge .stars{color:var(--yellow);font-size:1.05rem;letter-spacing:2px}
@@ -185,7 +182,6 @@ header.scrolled .brand .logo-pill{height:46px;padding:5px 14px}
 .rev-card .rc-name{font-family:var(--display);font-weight:600;color:var(--ink);font-size:1rem;line-height:1.1}
 .rev-card .rc-stars{color:var(--yellow);font-size:.82rem;letter-spacing:1px}
 .rev-card p{color:var(--ink-soft);font-size:.93rem;line-height:1.6}
-.rev-more{text-align:center;margin-top:34px}
 
 /* ===== Contact ===== */
 .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:stretch}
@@ -225,8 +221,7 @@ header.scrolled .brand .logo-pill{height:46px;padding:5px 14px}
 /* ===== Footer ===== */
 footer{background:var(--ink);color:#fff;margin-top:84px;padding:54px 26px 30px}
 .foot{max-width:var(--maxw);margin:0 auto;display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px}
-.foot-brand .logo-pill{background:#fff;border-radius:50px;padding:8px 16px;display:inline-flex;height:50px;margin-bottom:16px}
-.foot-brand .logo-pill img{height:100%;width:auto}
+.foot-brand .logo-img{width:80px;height:80px;margin-bottom:16px}
 .foot-brand p{color:rgba(255,255,255,.6);font-size:.92rem;max-width:300px}
 .foot h4{font-family:var(--display);font-size:1.05rem;margin-bottom:16px;color:#fff}
 .foot ul{list-style:none;display:grid;gap:9px}
@@ -250,21 +245,27 @@ footer{background:var(--ink);color:#fff;margin-top:84px;padding:54px 26px 30px}
 @media(max-width:980px){
   .about-grid{grid-template-columns:1fr;gap:54px}
   .about-photo{max-width:380px;margin:0 auto}
+  .reviews-layout{grid-template-columns:1fr;gap:40px}
+  .rev-img-box{max-width:440px;margin:0 auto}
+  .sec-head-left{text-align:center}
+  .sec-head-left .rev-top{justify-content:center}
   .contact-grid{grid-template-columns:1fr}
   .nav-links,.nav-cta{display:none}
   .burger{display:flex}
   .foot{grid-template-columns:1fr 1fr;gap:30px}
   .foot-brand{grid-column:1/-1}
+  .serv-grid{grid-template-columns:repeat(2,1fr)}
 }
 @media(max-width:768px){
   .hero{min-height:85vh;padding-top:140px}
   .float-card{display:none}
-  .slider-wrap{aspect-ratio:1/1}
+  .slider-wrap{aspect-ratio:4/3}
 }
 @media(max-width:560px){
   .hero-trust{gap:18px}
   .section{padding:60px 20px}
   .foot{grid-template-columns:1fr}
+  .serv-grid{grid-template-columns:1fr}
 }
 @media(prefers-reduced-motion:reduce){
   *{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.15s!important}
@@ -276,6 +277,7 @@ footer{background:var(--ink);color:#fff;margin-top:84px;padding:54px 26px 30px}
 </head>
 <body>
 
+<!-- ===== Loader ===== -->
 <div id="loader">
   <div class="cradle-load">
     <svg viewBox="0 0 100 100">
@@ -289,10 +291,11 @@ footer{background:var(--ink);color:#fff;margin-top:84px;padding:54px 26px 30px}
   <span data-el="Φροντίδα με αγάπη…" data-en="Care with love…">Φροντίδα με αγάπη…</span>
 </div>
 
+<!-- ===== Header ===== -->
 <header id="header">
   <nav class="nav">
     <a href="#top" class="brand">
-      <span class="logo-pill"><img src="louklogo.jpg" alt="Παιδίατρος Ιωάννης Κ. Λουκάς"></span>
+      <img src="louklogo.jpg" alt="Παιδίατρος Ιωάννης Κ. Λουκάς" class="logo-img">
     </a>
     <div class="nav-links">
       <a href="#about" data-el="Ο Ιατρός" data-en="The Doctor">Ο Ιατρός</a>
@@ -327,6 +330,7 @@ footer{background:var(--ink);color:#fff;margin-top:84px;padding:54px 26px 30px}
 
 <span id="top"></span>
 
+<!-- ===== Hero ===== -->
 <section class="hero">
   <div class="hero-copy">
     <span class="eyebrow"><span class="dot"></span><span data-el="Ιδιωτικό Ιατρείο · Νέος Κόσμος" data-en="Private Practice · Neos Kosmos">Ιδιωτικό Ιατρείο · Νέος Κόσμος</span></span>
@@ -360,6 +364,7 @@ footer{background:var(--ink);color:#fff;margin-top:84px;padding:54px 26px 30px}
   </div>
 </section>
 
+<!-- ===== About ===== -->
 <section class="section" id="about">
   <div class="about-grid">
     <div class="about-photo reveal">
@@ -385,18 +390,20 @@ footer{background:var(--ink);color:#fff;margin-top:84px;padding:54px 26px 30px}
   </div>
 </section>
 
+<!-- ===== Services ===== -->
 <section class="section" id="services">
   <div class="sec-head reveal">
     <span class="sec-label" data-el="Υπηρεσίες" data-en="Services">Υπηρεσίες</span>
     <h2 data-el="Ολοκληρωμένη παιδιατρική φροντίδα" data-en="Complete pediatric care">Ολοκληρωμένη παιδιατρική φροντίδα</h2>
     <p data-el="Από την πρώτη μέρα ζωής μέχρι την εφηβεία — με προσοχή στη λεπτομέρεια και αγάπη σε κάθε επίσκεψη." data-en="From the first day of life through adolescence — with attention to detail and care at every visit.">Από την πρώτη μέρα ζωής μέχρι την εφηβεία — με προσοχή στη λεπτομέρεια και αγάπη σε κάθε επίσκεψη.</p>
   </div>
-  <div class="serv-note reveal" data-el="Τα κόστη είναι ενδεικτικά και ενδέχεται να διαφοροποιηθούν ανάλογα με το περιστατικό κατά την επίσκεψη." data-en="Prices are indicative and may vary depending on the case during the visit.">Τα κόστη είναι ενδεικτικά και ενδέχεται να διαφοροποιηθούν ανάλογα με το περιστατικό κατά την επίσκεψη.</div>
   
   <div id="servicesContainer">
-    </div>
+    <!-- Grouped Services will be dynamically injected here -->
+  </div>
 </section>
 
+<!-- ===== Gallery ===== -->
 <section class="section" id="gallery">
   <div class="sec-head reveal">
     <span class="sec-label" data-el="Ο Χώρος" data-en="The Space">Ο Χώρος</span>
@@ -411,31 +418,43 @@ footer{background:var(--ink);color:#fff;margin-top:84px;padding:54px 26px 30px}
   </div>
 </section>
 
+<!-- ===== Reviews ===== -->
 <section class="section" id="reviews">
-  <div class="sec-head reveal">
-    <span class="sec-label" data-el="Αξιολογήσεις" data-en="Reviews">Αξιολογήσεις</span>
-    <h2 data-el="Τι λένε οι γονείς" data-en="What parents say">Τι λένε οι γονείς</h2>
-  </div>
-  <div class="rev-top reveal">
-    <div class="score-badge">
-      <span class="num">10</span>
-      <div>
-        <div class="stars">★★★★★</div>
-        <div class="sub" data-el="στο doctoranytime" data-en="on doctoranytime">στο doctoranytime</div>
+  <div class="reviews-layout">
+    <div class="rev-img-box reveal">
+      <img src="https://raw.githubusercontent.com/agelmet/LOUKAS/refs/heads/main/IMG_8257.jpg" alt="Παιδίατρος Ιωάννης Κ. Λουκάς">
+    </div>
+    
+    <div class="rev-right">
+      <div class="sec-head sec-head-left reveal">
+        <span class="sec-label" data-el="Αξιολογήσεις" data-en="Reviews">Αξιολογήσεις</span>
+        <h2 data-el="Τι λένε οι γονείς" data-en="What parents say">Τι λένε οι γονείς</h2>
+        <div class="rev-top" style="justify-content: flex-start;">
+          <div class="score-badge">
+            <span class="num">10</span>
+            <div>
+              <div class="stars">★★★★★</div>
+              <div class="sub" data-el="στο doctoranytime" data-en="on doctoranytime">στο doctoranytime</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="rev-track-wrap reveal">
+        <div class="rev-track" id="revTrack"></div>
+      </div>
+      
+      <div class="rev-more reveal" style="text-align: left; margin-top: 28px;">
+        <a href="https://www.doctoranytime.gr/d/Paidiatros/loukas-ioannis#review-section" target="_blank" rel="noopener" class="btn btn-ghost">
+          <span data-el="Δείτε όλες τις αξιολογήσεις" data-en="Read all reviews">Δείτε όλες τις αξιολογήσεις</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
       </div>
     </div>
   </div>
-  <div class="rev-track-wrap reveal">
-    <div class="rev-track" id="revTrack"></div>
-  </div>
-  <div class="rev-more reveal">
-    <a href="https://www.doctoranytime.gr/d/Paidiatros/loukas-ioannis#review-section" target="_blank" rel="noopener" class="btn btn-ghost">
-      <span data-el="Δείτε όλες τις αξιολογήσεις" data-en="Read all reviews">Δείτε όλες τις αξιολογήσεις</span>
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-    </a>
-  </div>
 </section>
 
+<!-- ===== CTA band ===== -->
 <div class="cta-band reveal">
   <div class="cta-inner">
     <div class="cta-blob cb1"></div>
@@ -449,6 +468,7 @@ footer{background:var(--ink);color:#fff;margin-top:84px;padding:54px 26px 30px}
   </div>
 </div>
 
+<!-- ===== Contact ===== -->
 <section class="section" id="contact">
   <div class="sec-head reveal">
     <span class="sec-label" data-el="Επικοινωνία" data-en="Contact">Επικοινωνία</span>
@@ -483,10 +503,11 @@ footer{background:var(--ink);color:#fff;margin-top:84px;padding:54px 26px 30px}
   </div>
 </section>
 
+<!-- ===== Footer ===== -->
 <footer>
   <div class="foot">
     <div class="foot-brand">
-      <span class="logo-pill"><img src="louklogo.jpg" alt="Παιδίατρος Ιωάννης Κ. Λουκάς"></span>
+      <img src="louklogo.jpg" alt="Παιδίατρος Ιωάννης Κ. Λουκάς" class="logo-img">
       <p data-el="Ιδιωτικό παιδιατρικό ιατρείο στον Νέο Κόσμο. Ζεστή, εξατομικευμένη φροντίδα για κάθε παιδί." data-en="Private pediatric practice in Neos Kosmos. Warm, personalised care for every child.">Ιδιωτικό παιδιατρικό ιατρείο στον Νέο Κόσμο. Ζεστή, εξατομικευμένη φροντίδα για κάθε παιδί.</p>
     </div>
     <div>
@@ -516,19 +537,25 @@ footer{background:var(--ink);color:#fff;margin-top:84px;padding:54px 26px 30px}
 
 <script>
 /* ===== data ===== */
+const GROUPS={
+  1:{el:'Βασική Φροντίδα',en:'Basic Care'},
+  2:{el:'Εξειδικευμένη Παρακολούθηση',en:'Specialized Monitoring'}
+};
+
 const SERVICES=[
-  {groupEl:'Γενική Φροντίδα & Πρόληψη', groupEn:'General Care & Prevention', ic:'stethoscope', el:'Απλή επίσκεψη', en:'Standard visit', min:30, price:1, descEl:'Πλήρης κλινική εξέταση για την παρακολούθηση της υγείας και της σωστής ανάπτυξης του παιδιού.', descEn:'Comprehensive clinical examination to monitor the child\'s health and proper development.'},
-  {groupEl:'Γενική Φροντίδα & Πρόληψη', groupEn:'General Care & Prevention', ic:'pill', el:'Ηλεκτρονική συνταγογράφηση', en:'E-prescription', min:30, price:1, descEl:'Άμεση και ασφαλής έκδοση συνταγών για φάρμακα ή εξετάσεις, εξοικονομώντας σας πολύτιμο χρόνο.', descEn:'Immediate and safe issuance of prescriptions for medications or tests, saving you valuable time.'},
-  {groupEl:'Εξειδικευμένη Αντιμετώπιση', groupEn:'Specialized Care', ic:'allergy', el:'Αντιμετώπιση αλλεργίας', en:'Allergy management', min:30, price:0, descEl:'Έγκαιρη διάγνωση και εξειδικευμένο θεραπευτικό πλάνο για την ανακούφιση των αλλεργικών συμπτωμάτων.', descEn:'Timely diagnosis and specialized treatment plan for the relief of allergic symptoms.'},
-  {groupEl:'Εξειδικευμένη Αντιμετώπιση', groupEn:'Specialized Care', ic:'stomach', el:'Γαστροοισοφαγική παλινδρόμηση', en:'Acid reflux management', min:30, price:0, descEl:'Αξιολόγηση και αντιμετώπιση της παλινδρόμησης με κατάλληλες διατροφικές οδηγίες και ιατρική καθοδήγηση.', descEn:'Evaluation and management of reflux with appropriate dietary guidelines and medical guidance.'},
-  {groupEl:'Εξειδικευμένη Αντιμετώπιση', groupEn:'Specialized Care', ic:'skin', el:'Αντιμετώπιση εκζέματος', en:'Eczema management', min:30, price:0, descEl:'Εξατομικευμένη θεραπεία και καθημερινή φροντίδα για την ατοπική δερματίτιδα και το ευαίσθητο δέρμα.', descEn:'Personalized treatment and daily care for atopic dermatitis and sensitive skin.'},
-  {groupEl:'Εξειδικευμένη Αντιμετώπιση', groupEn:'Specialized Care', ic:'jaundice', el:'Αντιμετώπιση ίκτερου', en:'Jaundice management', min:30, price:0, descEl:'Στενή παρακολούθηση των επιπέδων χολερυθρίνης σε νεογνά και ασφαλής καθοδήγηση μέχρι την πλήρη υποχώρηση.', descEn:'Close monitoring of bilirubin levels in newborns and safe guidance until full resolution.'},
-  {groupEl:'Γενική Φροντίδα & Πρόληψη', groupEn:'General Care & Prevention', ic:'syringe', el:'Εμβολιασμός', en:'Vaccination', min:30, price:1, descEl:'Χορήγηση όλων των απαραίτητων εμβολίων βάσει του εθνικού προγράμματος για τη θωράκιση του οργανισμού.', descEn:'Administration of all necessary vaccines based on the national schedule to shield the immune system.'},
-  {groupEl:'Γενική Φροντίδα & Πρόληψη', groupEn:'General Care & Prevention', ic:'flu', el:'Εμβόλιο γρίπης', en:'Flu vaccine', min:30, price:0, descEl:'Εποχιακός εμβολιασμός που εξασφαλίζει την προστασία του παιδιού από τον ιό της γρίπης.', descEn:'Seasonal vaccination ensuring the child\'s protection against the flu virus.'},
-  {groupEl:'Βρέφη & Εγκυμοσύνη', groupEn:'Infants & Pregnancy', ic:'newborn', el:'Επίσκεψη νεογέννητου', en:'Newborn visit', min:30, price:1, descEl:'Ο πρώτος και σημαντικότερος έλεγχος του βρέφους, συνοδευόμενος από πολύτιμες συμβουλές για τους νέους γονείς.', descEn:'The first and most important check-up of the infant, accompanied by valuable advice for new parents.'},
-  {groupEl:"Κατ' Οίκον & Έκτακτα", groupEn:'Home & Urgent Care', ic:'home', el:"Κατ' οίκον επίσκεψη", en:'Home visit', min:30, price:1, descEl:'Ολοκληρωμένη ιατρική φροντίδα στην άνεση του σπιτιού σας, ιδανική επιλογή όταν το παιδί νοσεί.', descEn:'Comprehensive medical care in the comfort of your home, an ideal choice when the child is sick.'},
-  {groupEl:'Βρέφη & Εγκυμοσύνη', groupEn:'Infants & Pregnancy', ic:'breast', el:'Οδηγίες θηλασμού', en:'Breastfeeding guidance', min:30, price:0, descEl:'Πρακτικές συμβουλές και ψυχολογική υποστήριξη για την εδραίωση ενός επιτυχημένου και ήρεμου θηλασμού.', descEn:'Practical advice and psychological support to establish successful and peaceful breastfeeding.'},
-  {groupEl:'Βρέφη & Εγκυμοσύνη', groupEn:'Infants & Pregnancy', ic:'pregnancy', el:'Παρακολούθηση εγκυμοσύνης', en:'Pregnancy monitoring', min:30, price:0, descEl:'Συμβουλευτική μελλοντικών γονέων για την κατάλληλη προετοιμασία και την ομαλή υποδοχή του νεογνού.', descEn:'Consultation for expectant parents for proper preparation and smooth welcoming of the newborn.'}
+  {g:1, ic:'stethoscope', el:'Απλή επίσκεψη', en:'Standard visit'},
+  {g:1, ic:'pill', el:'Ηλεκτρονική συνταγογράφηση', en:'E-prescription'},
+  {g:1, ic:'syringe', el:'Εμβολιασμός', en:'Vaccination'},
+  {g:1, ic:'flu', el:'Εμβόλιο γρίπης', en:'Flu vaccine'},
+  {g:1, ic:'newborn', el:'Επίσκεψη νεογέννητου', en:'Newborn visit'},
+  {g:1, ic:'home', el:"Κατ' οίκον επίσκεψη", en:'Home visit'},
+
+  {g:2, ic:'allergy', el:'Αντιμετώπιση αλλεργίας', en:'Allergy management'},
+  {g:2, ic:'stomach', el:'Γαστροοισοφαγική παλινδρόμηση', en:'Acid reflux management'},
+  {g:2, ic:'skin', el:'Αντιμετώπιση εκζέματος', en:'Eczema management'},
+  {g:2, ic:'jaundice', el:'Αντιμετώπιση ίκτερου', en:'Jaundice management'},
+  {g:2, ic:'breast', el:'Οδηγίες θηλασμού', en:'Breastfeeding guidance'},
+  {g:2, ic:'pregnancy', el:'Παρακολούθηση εγκυμοσύνης', en:'Pregnancy monitoring'}
 ];
 
 const ICONS={
@@ -575,36 +602,29 @@ const HOURS=[
 ];
 let LANG='el';
 
-/* ===== render services (grouped) ===== */
+/* ===== render services (grouped symmetrically, no descriptions) ===== */
 const sc = document.getElementById('servicesContainer');
-const groupedServices = SERVICES.reduce((acc, s) => {
-  if(!acc[s.groupEl]) acc[s.groupEl] = {en: s.groupEn, items: []};
-  acc[s.groupEl].items.push(s);
-  return acc;
-}, {});
 
-for(const [gEl, data] of Object.entries(groupedServices)){
+// Create exactly the symmetrical groups
+Object.keys(GROUPS).forEach(groupId => {
+  const groupData = GROUPS[groupId];
+  const itemsInGroup = SERVICES.filter(s => s.g == groupId);
+  
   const groupDiv = document.createElement('div');
   groupDiv.className = 'serv-group reveal';
-  groupDiv.innerHTML = `<h3 class="group-title" data-el="${gEl}" data-en="${data.en}">${gEl}</h3><div class="serv-grid"></div>`;
+  groupDiv.innerHTML = `<h3 class="group-title" data-el="${groupData.el}" data-en="${groupData.en}">${groupData.el}</h3><div class="serv-grid"></div>`;
   sc.appendChild(groupDiv);
   
   const grid = groupDiv.querySelector('.serv-grid');
-  data.items.forEach(s => {
+  itemsInGroup.forEach(s => {
     const el = document.createElement('div'); el.className = 'serv';
     el.innerHTML = `
-      <div class="si"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${ICONS[s.ic]}</svg></div>
+      <div class="si"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">${ICONS[s.ic]}</svg></div>
       <h3 data-el="${s.el}" data-en="${s.en}">${s.el}</h3>
-      <p class="serv-desc" data-el="${s.descEl}" data-en="${s.descEn}">${s.descEl}</p>
-      <div class="meta">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-        <span data-el="30 λεπτά" data-en="30 min">30 λεπτά</span>
-      </div>
-      <a href="tel:+302109013119" class="quote" data-el="Στείλτε αίτημα κόστους →" data-en="Request a quote →">Στείλτε αίτημα κόστους →</a>
     `;
     grid.appendChild(el);
   });
-}
+});
 
 /* ===== render reviews ===== */
 const palette=['#7E4FB0','#5AB031','#2F8FD6','#E8453C','#FFA51E'];
@@ -623,7 +643,7 @@ HOURS.forEach(h=>{
   hl.appendChild(row);
 });
 
-/* ===== gallery slider ===== */
+/* ===== gallery slider (true to size) ===== */
 const SPACE_IMGS = [
   'https://raw.githubusercontent.com/agelmet/LOUKAS/refs/heads/main/IMG_8054.jpg',
   'IMG_8135.JPG',
