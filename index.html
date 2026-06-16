@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Παιδίατρος Ιωάννης Κ. Λουκάς — Νέος Κόσμος, Αθήνα</title>
+<meta name="description" content="Παιδίατρος Ιωάννης Κ. Λουκάς. Ιδιωτικό παιδιατρικό ιατρείο στον Νέο Κόσμο. Εμβολιασμοί, παρακολούθηση ανάπτυξης, κατ' οίκον επισκέψεις. Κλείστε ραντεβού: 21 0901 3119.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Mulish:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --purple:#7E4FB0;
+  --purple-deep:#5E3690;
+  --green:#5AB031;
+  --green-deep:#3F8B1E;
+  --sky:#EAF4FB;
+  --sky-deep:#D5E9F6;
+  --cream:#FBF8F2;
+  --ink:#2C2740;
+  --ink-soft:#5C5570;
+  --red:#E8453C;
+  --yellow:#FFC42E;
+  --blue:#2F8FD6;
+  --white:#ffffff;
+  --shadow:0 18px 50px -22px rgba(94,54,144,.45);
+  --shadow-sm:0 10px 30px -16px rgba(94,54,144,.4);
+  --r-lg:32px; --r-md:22px; --r-sm:14px;
+  --maxw:1180px;
+  --display:'Fredoka',system-ui,sans-serif;
+  --body:'Mulish',system-ui,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);color:var(--ink);background:var(--cream);line-height:1.65;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+h1,h2,h3,h4{font-family:var(--display);font-weight:600;line-height:1.08;letter-spacing:-.01em}
+
+/* ===== Loader ===== */
+#loader{position:fixed;inset:0;z-index:9999;background:var(--cream);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:26px;transition:opacity .7s ease,visibility .7s}
+#loader.done{opacity:0;visibility:hidden}
+.cradle-load{width:96px;height:96px;position:relative}
+.cradle-load svg{width:100%;height:100%;overflow:visible}
+.cradle-load .arc{fill:none;stroke:var(--green);stroke-width:9;stroke-linecap:round;stroke-dasharray:200;stroke-dashoffset:200;animation:draw 1.5s ease forwards infinite}
+.cradle-load .baby{transform-origin:center;animation:bob 1.5s ease-in-out infinite}
+@keyframes draw{0%{stroke-dashoffset:200}55%,100%{stroke-dashoffset:0}}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+#loader span{font-family:var(--display);color:var(--purple);font-size:1.05rem;letter-spacing:.04em;opacity:.85}
+
+/* ===== Nav ===== */
+header{position:fixed;top:0;left:0;right:0;z-index:900;transition:all .35s ease;padding:16px 0}
+header.scrolled{background:rgba(251,248,242,.86);backdrop-filter:blur(14px);box-shadow:0 6px 30px -20px rgba(94,54,144,.5);padding:9px 0}
+.nav{max-width:var(--maxw);margin:0 auto;padding:0 26px;display:flex;align-items:center;justify-content:space-between;gap:18px}
+.brand{display:flex;align-items:center;gap:12px;flex-shrink:0}
+.brand .logo-pill{background:#fff;border-radius:60px;padding:7px 16px;box-shadow:var(--shadow-sm);display:flex;align-items:center;height:54px;transition:height .35s}
+header.scrolled .brand .logo-pill{height:46px;padding:5px 14px}
+.brand img{height:100%;width:auto;object-fit:contain}
+.nav-links{display:flex;align-items:center;gap:6px}
+.nav-links a{font-weight:600;font-size:.95rem;color:var(--ink-soft);padding:9px 14px;border-radius:40px;transition:all .25s}
+.nav-links a:hover{color:var(--purple);background:rgba(126,79,176,.09)}
+.nav-cta{background:var(--green);color:#fff!important;box-shadow:0 10px 22px -10px rgba(90,176,49,.8)}
+.nav-cta:hover{background:var(--green-deep)!important;color:#fff!important;transform:translateY(-1px)}
+.nav-right{display:flex;align-items:center;gap:14px}
+.lang{display:flex;align-items:center;gap:5px;background:#fff;border:1px solid rgba(126,79,176,.18);border-radius:40px;padding:5px;box-shadow:var(--shadow-sm)}
+.lang button{border:none;background:none;font-family:var(--body);font-weight:700;font-size:.78rem;cursor:pointer;padding:5px 11px;border-radius:30px;color:var(--ink-soft);transition:all .2s;display:flex;align-items:center;gap:5px}
+.lang button.active{background:var(--purple);color:#fff}
+.flag{width:18px;height:13px;border-radius:2px;object-fit:cover;display:inline-block}
+.burger{display:none;flex-direction:column;gap:5px;background:#fff;border:none;cursor:pointer;padding:12px;border-radius:14px;box-shadow:var(--shadow-sm)}
+.burger span{width:22px;height:2.5px;background:var(--purple);border-radius:3px;transition:.3s}
+.burger.open span:nth-child(1){transform:translateY(7.5px) rotate(45deg)}
+.burger.open span:nth-child(2){opacity:0}
+.burger.open span:nth-child(3){transform:translateY(-7.5px) rotate(-45deg)}
+
+/* ===== Hero ===== */
+.hero{position:relative;padding:160px 26px 90px;max-width:var(--maxw);margin:0 auto;display:grid;grid-template-columns:1.05fr .95fr;gap:50px;align-items:center;min-height:92vh}
+.blob{position:absolute;border-radius:50%;filter:blur(8px);opacity:.5;z-index:0;pointer-events:none}
+.b1{width:340px;height:340px;background:radial-gradient(circle,#cdeab8,transparent 70%);top:60px;left:-120px}
+.b2{width:300px;height:300px;background:radial-gradient(circle,#e3d2f5,transparent 70%);bottom:-40px;right:-90px}
+.hero-copy{position:relative;z-index:2}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;background:#fff;border-radius:40px;padding:8px 16px 8px 10px;box-shadow:var(--shadow-sm);font-weight:700;font-size:.82rem;color:var(--purple);margin-bottom:24px;border:1px solid rgba(126,79,176,.1)}
+.eyebrow .dot{width:9px;height:9px;border-radius:50%;background:var(--green);box-shadow:0 0 0 4px rgba(90,176,49,.22);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 4px rgba(90,176,49,.22)}50%{box-shadow:0 0 0 7px rgba(90,176,49,.05)}}
+.hero h1{font-size:clamp(2.5rem,5.8vw,4.3rem);color:var(--ink);margin-bottom:20px}
+.hero h1 .hl{color:var(--purple);position:relative;white-space:nowrap}
+.hero h1 .hl svg{position:absolute;left:0;bottom:-10px;width:100%;height:16px}
+.hero p.lead{font-size:1.16rem;color:var(--ink-soft);max-width:520px;margin-bottom:34px}
+.hero-cta{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+.btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--display);font-weight:600;font-size:1.02rem;padding:15px 28px;border-radius:50px;cursor:pointer;border:none;transition:all .28s;white-space:nowrap}
+.btn-primary{background:var(--purple);color:#fff;box-shadow:0 16px 32px -14px rgba(126,79,176,.85)}
+.btn-primary:hover{background:var(--purple-deep);transform:translateY(-3px);box-shadow:0 20px 38px -14px rgba(126,79,176,.9)}
+.btn-ghost{background:#fff;color:var(--purple);box-shadow:var(--shadow-sm)}
+.btn-ghost:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+.hero-trust{display:flex;gap:26px;margin-top:38px;flex-wrap:wrap}
+.hero-trust .t{display:flex;flex-direction:column}
+.hero-trust .t b{font-family:var(--display);font-size:1.7rem;color:var(--green-deep);line-height:1}
+.hero-trust .t span{font-size:.82rem;color:var(--ink-soft);font-weight:600;margin-top:3px}
+
+/* hero visual */
+.hero-visual{position:relative;z-index:2}
+.hero-photo{position:relative;border-radius:36px;overflow:hidden;box-shadow:var(--shadow);aspect-ratio:4/5;background:var(--sky)}
+.hero-photo img{width:100%;height:100%;object-fit:cover;object-position:center top}
+.float-card{position:absolute;background:#fff;border-radius:18px;padding:13px 17px;box-shadow:var(--shadow);display:flex;align-items:center;gap:12px;font-weight:700;font-size:.9rem;z-index:3}
+.fc-1{bottom:24px;left:-22px;animation:floaty 4s ease-in-out infinite}
+.fc-2{top:36px;right:-18px;animation:floaty 4.6s ease-in-out infinite .8s}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+.fc-ic{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.fc-1 .fc-ic{background:rgba(90,176,49,.15);color:var(--green-deep)}
+.fc-2 .fc-ic{background:rgba(126,79,176,.13);color:var(--purple)}
+.fc-sub{font-weight:500;font-size:.74rem;color:var(--ink-soft);display:block}
+
+/* ===== sections ===== */
+.section{max-width:var(--maxw);margin:0 auto;padding:84px 26px;position:relative}
+.sec-head{text-align:center;max-width:640px;margin:0 auto 54px}
+.sec-label{display:inline-block;font-family:var(--display);font-weight:600;color:var(--green-deep);font-size:.95rem;letter-spacing:.06em;text-transform:uppercase;margin-bottom:12px}
+.sec-head h2{font-size:clamp(2rem,4vw,2.9rem);color:var(--ink);margin-bottom:14px}
+.sec-head p{color:var(--ink-soft);font-size:1.08rem}
+
+.reveal{opacity:0;transform:translateY(34px);transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .8s cubic-bezier(.22,1,.36,1)}
+.reveal.in{opacity:1;transform:none}
+
+/* ===== About ===== */
+#about{background:#fff;border-radius:48px;margin-top:20px}
+.about-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:54px;align-items:center}
+.about-photo{position:relative}
+.about-photo .main{border-radius:30px;overflow:hidden;box-shadow:var(--shadow);aspect-ratio:3/4}
+.about-photo .main img{width:100%;height:100%;object-fit:cover}
+.about-photo .badge{position:absolute;bottom:-22px;right:-12px;background:var(--purple);color:#fff;border-radius:22px;padding:18px 22px;box-shadow:var(--shadow);text-align:center;max-width:170px}
+.about-photo .badge b{font-family:var(--display);font-size:1.05rem;display:block;line-height:1.2}
+.about-photo .badge span{font-size:.76rem;opacity:.9}
+.about-copy h2{font-size:clamp(1.9rem,3.6vw,2.7rem);margin-bottom:8px}
+.about-copy .role{font-family:var(--display);color:var(--green-deep);font-size:1.1rem;margin-bottom:20px}
+.about-copy p{color:var(--ink-soft);margin-bottom:16px;font-size:1.04rem}
+.creds{list-style:none;display:grid;gap:12px;margin-top:24px}
+.creds li{display:flex;gap:13px;align-items:flex-start;font-size:.97rem;font-weight:500}
+.creds .ci{flex-shrink:0;width:30px;height:30px;border-radius:9px;background:rgba(90,176,49,.13);color:var(--green-deep);display:flex;align-items:center;justify-content:center;margin-top:1px}
+.creds li b{color:var(--ink)}
+
+/* ===== Services ===== */
+.serv-note{text-align:center;color:var(--ink-soft);font-size:.92rem;background:var(--sky);border-radius:16px;padding:13px 20px;max-width:620px;margin:0 auto 34px;font-weight:600}
+.serv-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px}
+.serv{background:#fff;border-radius:var(--r-md);padding:24px 22px;box-shadow:var(--shadow-sm);border:1.5px solid transparent;transition:all .3s;position:relative;overflow:hidden}
+.serv:hover{transform:translateY(-5px);box-shadow:var(--shadow);border-color:rgba(90,176,49,.3)}
+.serv .si{width:50px;height:50px;border-radius:15px;display:flex;align-items:center;justify-content:center;margin-bottom:15px;background:linear-gradient(135deg,rgba(126,79,176,.12),rgba(90,176,49,.12));color:var(--purple)}
+.serv h3{font-size:1.12rem;margin-bottom:5px;color:var(--ink)}
+.serv .meta{font-size:.82rem;color:var(--ink-soft);font-weight:600;display:flex;align-items:center;gap:6px}
+.serv .quote{margin-top:13px;font-size:.82rem;font-weight:700;color:var(--green-deep);display:inline-flex;align-items:center;gap:5px;opacity:0;transform:translateX(-6px);transition:.3s}
+.serv:hover .quote{opacity:1;transform:none}
+
+/* ===== Gallery ===== */
+#gallery{padding-top:30px}
+.gal-grid{display:grid;grid-template-columns:repeat(12,1fr);grid-auto-rows:160px;gap:14px}
+.gal-item{border-radius:var(--r-md);overflow:hidden;box-shadow:var(--shadow-sm);position:relative}
+.gal-item img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+.gal-item:hover img{transform:scale(1.07)}
+.gal-item::after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 55%,rgba(94,54,144,.25));opacity:0;transition:.4s}
+.gal-item:hover::after{opacity:1}
+.g1{grid-column:span 5;grid-row:span 2}
+.g2{grid-column:span 4;grid-row:span 1}
+.g3{grid-column:span 3;grid-row:span 1}
+.g4{grid-column:span 4;grid-row:span 1}
+.g5{grid-column:span 3;grid-row:span 1}
+.g6{grid-column:span 4;grid-row:span 2}
+.g7{grid-column:span 4;grid-row:span 1}
+.g8{grid-column:span 4;grid-row:span 1}
+
+/* ===== Reviews ===== */
+#reviews{background:linear-gradient(180deg,var(--sky),#fff);border-radius:48px}
+.rev-top{display:flex;align-items:center;justify-content:center;gap:18px;flex-wrap:wrap;margin-bottom:14px}
+.score-badge{display:flex;align-items:center;gap:14px;background:#fff;border-radius:24px;padding:14px 22px;box-shadow:var(--shadow-sm)}
+.score-badge .num{font-family:var(--display);font-size:2.6rem;color:var(--green-deep);line-height:1}
+.score-badge .stars{color:var(--yellow);font-size:1.05rem;letter-spacing:2px}
+.score-badge .sub{font-size:.8rem;color:var(--ink-soft);font-weight:600}
+.rev-track-wrap{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent);mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent);padding:12px 0}
+.rev-track{display:flex;gap:18px;width:max-content;animation:scrollx 56s linear infinite}
+.rev-track:hover{animation-play-state:paused}
+@keyframes scrollx{to{transform:translateX(-50%)}}
+.rev-card{width:340px;flex-shrink:0;background:#fff;border-radius:var(--r-md);padding:24px;box-shadow:var(--shadow-sm);display:flex;flex-direction:column}
+.rev-card .rc-top{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.rev-card .av{width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:600;color:#fff;font-size:1.2rem;flex-shrink:0}
+.rev-card .rc-name{font-family:var(--display);font-weight:600;color:var(--ink);font-size:1rem;line-height:1.1}
+.rev-card .rc-stars{color:var(--yellow);font-size:.82rem;letter-spacing:1px}
+.rev-card p{color:var(--ink-soft);font-size:.93rem;line-height:1.6}
+.rev-more{text-align:center;margin-top:34px}
+
+/* ===== Contact ===== */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:stretch}
+.info-card{background:#fff;border-radius:var(--r-lg);padding:36px;box-shadow:var(--shadow-sm)}
+.info-card h3{font-size:1.5rem;margin-bottom:6px}
+.info-card .ic-sub{color:var(--ink-soft);margin-bottom:24px;font-size:.97rem}
+.info-row{display:flex;gap:15px;align-items:flex-start;padding:15px 0;border-bottom:1px solid rgba(126,79,176,.1)}
+.info-row:last-child{border-bottom:none}
+.info-row .ir-ic{width:42px;height:42px;border-radius:13px;background:rgba(126,79,176,.1);color:var(--purple);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.info-row .ir-t{font-size:.78rem;color:var(--ink-soft);font-weight:700;text-transform:uppercase;letter-spacing:.04em}
+.info-row .ir-v{font-weight:600;color:var(--ink);font-size:1rem}
+.info-row a.ir-v:hover{color:var(--purple)}
+.hours-list{display:grid;gap:7px;margin-top:6px}
+.hours-list .hr{display:flex;justify-content:space-between;font-size:.92rem;padding:7px 12px;border-radius:10px}
+.hours-list .hr.today{background:rgba(90,176,49,.12);font-weight:700}
+.hours-list .hr .d{font-weight:600;color:var(--ink)}
+.hours-list .hr .h{color:var(--ink-soft)}
+.hours-list .hr.closed .h{color:var(--red);font-weight:600}
+.socials{display:flex;gap:11px;margin-top:22px}
+.socials a{width:44px;height:44px;border-radius:13px;display:flex;align-items:center;justify-content:center;background:var(--sky);color:var(--purple);transition:all .25s}
+.socials a:hover{background:var(--purple);color:#fff;transform:translateY(-3px)}
+.map-card{border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--shadow-sm);min-height:440px;background:var(--sky);position:relative}
+.map-card iframe{width:100%;height:100%;border:0;min-height:440px}
+
+/* ===== CTA banner ===== */
+.cta-band{max-width:var(--maxw);margin:30px auto 0;padding:0 26px}
+.cta-inner{background:linear-gradient(120deg,var(--purple),var(--purple-deep));border-radius:var(--r-lg);padding:54px 44px;text-align:center;color:#fff;box-shadow:var(--shadow);position:relative;overflow:hidden}
+.cta-inner h2{font-size:clamp(1.8rem,3.5vw,2.6rem);margin-bottom:12px;color:#fff}
+.cta-inner p{opacity:.92;margin-bottom:28px;font-size:1.08rem;max-width:520px;margin-left:auto;margin-right:auto}
+.cta-inner .btn-primary{background:#fff;color:var(--purple)}
+.cta-inner .btn-primary:hover{background:var(--cream)}
+.cta-blob{position:absolute;border-radius:50%;background:rgba(255,255,255,.08)}
+.cb1{width:200px;height:200px;top:-70px;left:-40px}
+.cb2{width:150px;height:150px;bottom:-60px;right:30px}
+
+/* ===== Footer ===== */
+footer{background:var(--ink);color:#fff;margin-top:84px;padding:54px 26px 30px}
+.foot{max-width:var(--maxw);margin:0 auto;display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px}
+.foot-brand .logo-pill{background:#fff;border-radius:50px;padding:8px 16px;display:inline-flex;height:50px;margin-bottom:16px}
+.foot-brand .logo-pill img{height:100%;width:auto}
+.foot-brand p{color:rgba(255,255,255,.6);font-size:.92rem;max-width:300px}
+.foot h4{font-family:var(--display);font-size:1.05rem;margin-bottom:16px;color:#fff}
+.foot ul{list-style:none;display:grid;gap:9px}
+.foot ul a{color:rgba(255,255,255,.62);font-size:.92rem;transition:.2s}
+.foot ul a:hover{color:#fff}
+.foot-bottom{max-width:var(--maxw);margin:40px auto 0;padding-top:24px;border-top:1px solid rgba(255,255,255,.12);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;font-size:.84rem;color:rgba(255,255,255,.5)}
+.foot-bottom a{color:rgba(255,255,255,.7)}
+.advon{display:inline-flex;align-items:center;gap:7px}
+.advon b{color:#fff}
+
+/* ===== mobile menu ===== */
+.mobile-menu{position:fixed;inset:0;z-index:899;background:rgba(251,248,242,.98);backdrop-filter:blur(8px);transform:translateX(100%);transition:transform .4s cubic-bezier(.22,1,.36,1);display:flex;flex-direction:column;justify-content:center;align-items:center;gap:8px;padding:30px}
+.mobile-menu.open{transform:none}
+.mobile-menu a{font-family:var(--display);font-size:1.5rem;font-weight:600;color:var(--ink);padding:12px}
+.mobile-menu a.m-cta{background:var(--green);color:#fff;border-radius:50px;padding:14px 34px;margin-top:14px}
+
+@media(max-width:980px){
+  .hero{grid-template-columns:1fr;gap:40px;padding-top:130px;min-height:auto}
+  .hero-visual{max-width:440px;margin:0 auto}
+  .about-grid{grid-template-columns:1fr;gap:54px}
+  .about-photo{max-width:380px;margin:0 auto}
+  .contact-grid{grid-template-columns:1fr}
+  .gal-grid{grid-auto-rows:140px}
+  .nav-links{display:none}
+  .nav-cta{display:none}
+  .burger{display:flex}
+  .foot{grid-template-columns:1fr 1fr;gap:30px}
+  .foot-brand{grid-column:1/-1}
+}
+@media(max-width:560px){
+  .gal-grid{grid-template-columns:repeat(2,1fr);grid-auto-rows:130px}
+  .g1,.g2,.g3,.g4,.g5,.g6,.g7,.g8{grid-column:span 1;grid-row:span 1}
+  .g1{grid-column:span 2;grid-row:span 2}
+  .g6{grid-column:span 2}
+  .hero-trust{gap:18px}
+  .section{padding:60px 20px}
+  .float-card{display:none}
+  .foot{grid-template-columns:1fr}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.15s!important}
+  .reveal{opacity:1;transform:none}
+  .rev-track{animation:none}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== Loader ===== -->
+<div id="loader">
+  <div class="cradle-load">
+    <svg viewBox="0 0 100 100">
+      <path class="arc" d="M10,52 Q50,98 90,52"/>
+      <g class="baby">
+        <circle cx="44" cy="40" r="13" fill="none" stroke="#7E4FB0" stroke-width="6"/>
+        <path d="M44,53 Q60,55 66,68" fill="none" stroke="#7E4FB0" stroke-width="6" stroke-linecap="round"/>
+      </g>
+    </svg>
+  </div>
+  <span data-el="Φροντίδα με αγάπη…" data-en="Care with love…">Φροντίδα με αγάπη…</span>
+</div>
+
+<!-- ===== Header ===== -->
+<header id="header">
+  <nav class="nav">
+    <a href="#top" class="brand">
+      <span class="logo-pill"><img src="louklogo.jpg" alt="Παιδίατρος Ιωάννης Κ. Λουκάς"></span>
+    </a>
+    <div class="nav-links">
+      <a href="#about" data-el="Ο Ιατρός" data-en="The Doctor">Ο Ιατρός</a>
+      <a href="#services" data-el="Υπηρεσίες" data-en="Services">Υπηρεσίες</a>
+      <a href="#gallery" data-el="Ο Χώρος" data-en="The Space">Ο Χώρος</a>
+      <a href="#reviews" data-el="Αξιολογήσεις" data-en="Reviews">Αξιολογήσεις</a>
+      <a href="#contact" data-el="Επικοινωνία" data-en="Contact">Επικοινωνία</a>
+      <a href="tel:+302109013119" class="nav-cta" data-el="Ραντεβού" data-en="Book Now">Ραντεβού</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang">
+        <button data-lang="el" class="active" aria-label="Ελληνικά">
+          <svg class="flag" viewBox="0 0 27 18"><rect width="27" height="18" fill="#0d5eaf"/><rect y="2" width="27" height="2" fill="#fff"/><rect y="6" width="27" height="2" fill="#fff"/><rect y="10" width="27" height="2" fill="#fff"/><rect y="14" width="27" height="2" fill="#fff"/><rect width="10" height="10" fill="#0d5eaf"/><rect x="4" width="2" height="10" fill="#fff"/><rect y="4" width="10" height="2" fill="#fff"/></svg>
+          EL</button>
+        <button data-lang="en" aria-label="English">
+          <svg class="flag" viewBox="0 0 36 24"><rect width="36" height="24" fill="#012169"/><path d="M0,0 36,24 M36,0 0,24" stroke="#fff" stroke-width="4.8"/><path d="M0,0 36,24 M36,0 0,24" stroke="#C8102E" stroke-width="2.4"/><path d="M18,0 V24 M0,12 H36" stroke="#fff" stroke-width="8"/><path d="M18,0 V24 M0,12 H36" stroke="#C8102E" stroke-width="4.8"/></svg>
+          EN</button>
+      </div>
+      <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#about" data-el="Ο Ιατρός" data-en="The Doctor">Ο Ιατρός</a>
+  <a href="#services" data-el="Υπηρεσίες" data-en="Services">Υπηρεσίες</a>
+  <a href="#gallery" data-el="Ο Χώρος" data-en="The Space">Ο Χώρος</a>
+  <a href="#reviews" data-el="Αξιολογήσεις" data-en="Reviews">Αξιολογήσεις</a>
+  <a href="#contact" data-el="Επικοινωνία" data-en="Contact">Επικοινωνία</a>
+  <a href="tel:+302109013119" class="m-cta" data-el="Κλείστε Ραντεβού" data-en="Book Appointment">Κλείστε Ραντεβού</a>
+</div>
+
+<span id="top"></span>
+
+<!-- ===== Hero ===== -->
+<section class="hero">
+  <div class="blob b1"></div>
+  <div class="blob b2"></div>
+  <div class="hero-copy">
+    <span class="eyebrow"><span class="dot"></span><span data-el="Ιδιωτικό Ιατρείο · Νέος Κόσμος" data-en="Private Practice · Neos Kosmos">Ιδιωτικό Ιατρείο · Νέος Κόσμος</span></span>
+    <h1>
+      <span data-el="Φροντίδα που τα παιδιά" data-en="Care that children">Φροντίδα που τα παιδιά</span>
+      <span class="hl" data-el="αγαπούν" data-en="adore">αγαπούν<svg viewBox="0 0 200 16" preserveAspectRatio="none"><path d="M2,11 Q60,2 100,8 T198,7" fill="none" stroke="#5AB031" stroke-width="5" stroke-linecap="round"/></svg></span>
+      <span data-el="κι οι γονείς εμπιστεύονται." data-en="and parents trust.">κι οι γονείς εμπιστεύονται.</span>
+    </h1>
+    <p class="lead" data-el="Ο παιδίατρος Ιωάννης Κ. Λουκάς προσφέρει ζεστή, προσεκτική και εξατομικευμένη φροντίδα — από το νεογέννητο μέχρι την εφηβεία — σε έναν χώρο φτιαγμένο για να νιώθουν ασφαλή τα μικρά σας." data-en="Pediatrician Ioannis K. Loukas offers warm, attentive and personalised care — from newborn to adolescence — in a space designed to make your little ones feel safe.">Ο παιδίατρος Ιωάννης Κ. Λουκάς προσφέρει ζεστή, προσεκτική και εξατομικευμένη φροντίδα — από το νεογέννητο μέχρι την εφηβεία — σε έναν χώρο φτιαγμένο για να νιώθουν ασφαλή τα μικρά σας.</p>
+    <div class="hero-cta">
+      <a href="tel:+302109013119" class="btn btn-primary">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <span data-el="21 0901 3119" data-en="21 0901 3119">21 0901 3119</span>
+      </a>
+      <a href="#services" class="btn btn-ghost"><span data-el="Δείτε τις υπηρεσίες" data-en="See services">Δείτε τις υπηρεσίες</span></a>
+    </div>
+    <div class="hero-trust">
+      <div class="t"><b>10.0</b><span data-el="Μέση αξιολόγηση" data-en="Average rating">Μέση αξιολόγηση</span></div>
+      <div class="t"><b>EPLS</b><span data-el="Πιστοποίηση" data-en="Certified">Πιστοποίηση</span></div>
+      <div class="t"><b>0–18</b><span data-el="Ετών φροντίδα" data-en="Years of age">Ετών φροντίδα</span></div>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-photo">
+      <img src="IMG_8257.jpg" alt="Ιωάννης Κ. Λουκάς, Παιδίατρος">
+    </div>
+    <div class="float-card fc-1">
+      <span class="fc-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></span>
+      <span data-el="Φιλικός με τα παιδιά<span class='fc-sub'>χωρίς φόβο, με χαμόγελο</span>" data-en="Child-friendly<span class='fc-sub'>no fear, all smiles</span>">Φιλικός με τα παιδιά<span class="fc-sub">χωρίς φόβο, με χαμόγελο</span></span>
+    </div>
+    <div class="float-card fc-2">
+      <span class="fc-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+      <span data-el="Άμεση επικοινωνία<span class='fc-sub'>πάντα διαθέσιμος</span>" data-en="Always reachable<span class='fc-sub'>quick to respond</span>">Άμεση επικοινωνία<span class="fc-sub">πάντα διαθέσιμος</span></span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== About ===== -->
+<section class="section" id="about">
+  <div class="about-grid">
+    <div class="about-photo reveal">
+      <div class="main"><img src="IMG_8219.JPG" alt="Ιωάννης Κ. Λουκάς στο ιατρείο"></div>
+      <div class="badge">
+        <b data-el="La Sapienza" data-en="La Sapienza">La Sapienza</b>
+        <span data-el="Πτυχιούχος Ιατρικής, Ρώμη" data-en="Medical graduate, Rome">Πτυχιούχος Ιατρικής, Ρώμη</span>
+      </div>
+    </div>
+    <div class="about-copy reveal">
+      <span class="sec-label" data-el="Ο Ιατρός" data-en="The Doctor">Ο Ιατρός</span>
+      <h2 data-el="Ιωάννης Κ. Λουκάς" data-en="Ioannis K. Loukas">Ιωάννης Κ. Λουκάς</h2>
+      <p class="role" data-el="Παιδίατρος" data-en="Pediatrician">Παιδίατρος</p>
+      <p data-el="Ο Ιωάννης Λουκάς ολοκλήρωσε τις ιατρικές του σπουδές στο Πανεπιστήμιο «La Sapienza» της Ρώμης και έλαβε την ειδικότητα της Παιδιατρικής στη Β΄ Πανεπιστημιακή Παιδιατρική Κλινική του Νοσοκομείου Παίδων «Παναγιώτη & Αγλαΐας Κυριακού»." data-en="Ioannis Loukas completed his medical studies at the «La Sapienza» University of Rome and trained as a pediatrician at the 2nd University Pediatric Clinic of the «P. & A. Kyriakou» Children's Hospital.">Ο Ιωάννης Λουκάς ολοκλήρωσε τις ιατρικές του σπουδές στο Πανεπιστήμιο «La Sapienza» της Ρώμης και έλαβε την ειδικότητα της Παιδιατρικής στη Β΄ Πανεπιστημιακή Παιδιατρική Κλινική του Νοσοκομείου Παίδων «Παναγιώτη & Αγλαΐας Κυριακού».</p>
+      <p data-el="Με πλούσια εμπειρία από πλήθος νοσοκομειακών ιδρυμάτων, σήμερα είναι επιστημονικός συνεργάτης του ομίλου Affidea Ευρωϊατρική και συμβεβλημένος παιδίατρος με το Υπουργείο Εθνικής Άμυνας." data-en="With broad hospital experience, he is today a scientific associate of the Affidea Euromedica group and a contracted pediatrician with the Ministry of National Defence.">Με πλούσια εμπειρία από πλήθος νοσοκομειακών ιδρυμάτων, σήμερα είναι επιστημονικός συνεργάτης του ομίλου Affidea Ευρωϊατρική και συμβεβλημένος παιδίατρος με το Υπουργείο Εθνικής Άμυνας.</p>
+      <ul class="creds">
+        <li><span class="ci"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></span><span data-el="<b>La Sapienza, Ρώμη</b> — Πτυχίο Ιατρικής" data-en="<b>La Sapienza, Rome</b> — Medical degree"><b>La Sapienza, Ρώμη</b> — Πτυχίο Ιατρικής</span></li>
+        <li><span class="ci"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M2 12h20"/></svg></span><span data-el="<b>Πιστοποίηση EPLS</b> — European Pediatric Life Support" data-en="<b>EPLS Certified</b> — European Pediatric Life Support"><b>Πιστοποίηση EPLS</b> — European Pediatric Life Support</span></li>
+        <li><span class="ci"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg></span><span data-el="<b>Μέλος</b> Ιατρικού Συλλόγου Αθηνών" data-en="<b>Member</b> of the Athens Medical Association"><b>Μέλος</b> Ιατρικού Συλλόγου Αθηνών</span></li>
+        <li><span class="ci"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-8-4.5-8-11a4 4 0 0 1 8-1 4 4 0 0 1 8 1c0 6.5-8 11-8 11z"/></svg></span><span data-el="<b>Διαρκής επιμόρφωση</b> σε συνέδρια Ελλάδας & εξωτερικού" data-en="<b>Continuous education</b> at conferences in Greece & abroad"><b>Διαρκής επιμόρφωση</b> σε συνέδρια Ελλάδας & εξωτερικού</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Services ===== -->
+<section class="section" id="services">
+  <div class="sec-head reveal">
+    <span class="sec-label" data-el="Υπηρεσίες" data-en="Services">Υπηρεσίες</span>
+    <h2 data-el="Ολοκληρωμένη παιδιατρική φροντίδα" data-en="Complete pediatric care">Ολοκληρωμένη παιδιατρική φροντίδα</h2>
+    <p data-el="Από την πρώτη μέρα ζωής μέχρι την εφηβεία — με προσοχή στη λεπτομέρεια και αγάπη σε κάθε επίσκεψη." data-en="From the first day of life through adolescence — with attention to detail and care at every visit.">Από την πρώτη μέρα ζωής μέχρι την εφηβεία — με προσοχή στη λεπτομέρεια και αγάπη σε κάθε επίσκεψη.</p>
+  </div>
+  <div class="serv-note reveal" data-el="Τα κόστη είναι ενδεικτικά και ενδέχεται να διαφοροποιηθούν ανάλογα με το περιστατικό κατά την επίσκεψη." data-en="Prices are indicative and may vary depending on the case during the visit.">Τα κόστη είναι ενδεικτικά και ενδέχεται να διαφοροποιηθούν ανάλογα με το περιστατικό κατά την επίσκεψη.</div>
+  <div class="serv-grid" id="servGrid"></div>
+</section>
+
+<!-- ===== Gallery ===== -->
+<section class="section" id="gallery">
+  <div class="sec-head reveal">
+    <span class="sec-label" data-el="Ο Χώρος" data-en="The Space">Ο Χώρος</span>
+    <h2 data-el="Ένα ιατρείο φτιαγμένο για παιδιά" data-en="A practice built for children">Ένα ιατρείο φτιαγμένο για παιδιά</h2>
+    <p data-el="Χρώματα, παιχνίδι και ζεστασιά — γιατί ένα παιδί που νιώθει άνετα, εξετάζεται καλύτερα." data-en="Colour, play and warmth — because a child who feels at ease is examined better.">Χρώματα, παιχνίδι και ζεστασιά — γιατί ένα παιδί που νιώθει άνετα, εξετάζεται καλύτερα.</p>
+  </div>
+  <div class="gal-grid reveal">
+    <div class="gal-item g1"><img src="IMG_8054.jpg" alt="Χώρος παιχνιδιού"></div>
+    <div class="gal-item g2"><img src="IMG_8135.JPG" alt="Παιδική αίθουσα αναμονής"></div>
+    <div class="gal-item g3"><img src="IMG_8073.JPG" alt="Τσουλήθρα"></div>
+    <div class="gal-item g4"><img src="IMG_8265.JPG" alt="Γραφείο ιατρού"></div>
+    <div class="gal-item g5"><img src="IMG_8098.JPG" alt="Δέντρο με ζωάκια"></div>
+    <div class="gal-item g6"><img src="IMG_8219.JPG" alt="Ο ιατρός στο ιατρείο"></div>
+    <div class="gal-item g7"><img src="IMG_8282.jpg" alt="Πινακίδα ιατρείου"></div>
+    <div class="gal-item g8"><img src="IMG_8257.jpg" alt="Ο ιατρός"></div>
+  </div>
+</section>
+
+<!-- ===== Reviews ===== -->
+<section class="section" id="reviews">
+  <div class="sec-head reveal">
+    <span class="sec-label" data-el="Αξιολογήσεις" data-en="Reviews">Αξιολογήσεις</span>
+    <h2 data-el="Τι λένε οι γονείς" data-en="What parents say">Τι λένε οι γονείς</h2>
+  </div>
+  <div class="rev-top reveal">
+    <div class="score-badge">
+      <span class="num">10</span>
+      <div>
+        <div class="stars">★★★★★</div>
+        <div class="sub" data-el="στο doctoranytime" data-en="on doctoranytime">στο doctoranytime</div>
+      </div>
+    </div>
+  </div>
+  <div class="rev-track-wrap reveal">
+    <div class="rev-track" id="revTrack"></div>
+  </div>
+  <div class="rev-more reveal">
+    <a href="https://www.doctoranytime.gr/d/Paidiatros/loukas-ioannis#review-section" target="_blank" rel="noopener" class="btn btn-ghost">
+      <span data-el="Δείτε όλες τις αξιολογήσεις" data-en="Read all reviews">Δείτε όλες τις αξιολογήσεις</span>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- ===== CTA band ===== -->
+<div class="cta-band reveal">
+  <div class="cta-inner">
+    <div class="cta-blob cb1"></div>
+    <div class="cta-blob cb2"></div>
+    <h2 data-el="Κλείστε το ραντεβού σας" data-en="Book your appointment">Κλείστε το ραντεβού σας</h2>
+    <p data-el="Επικοινωνήστε σήμερα — με χαρά θα φροντίσουμε το παιδί σας." data-en="Get in touch today — we'll be glad to care for your child.">Επικοινωνήστε σήμερα — με χαρά θα φροντίσουμε το παιδί σας.</p>
+    <a href="tel:+302109013119" class="btn btn-primary">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      21 0901 3119
+    </a>
+  </div>
+</div>
+
+<!-- ===== Contact ===== -->
+<section class="section" id="contact">
+  <div class="sec-head reveal">
+    <span class="sec-label" data-el="Επικοινωνία" data-en="Contact">Επικοινωνία</span>
+    <h2 data-el="Πού θα μας βρείτε" data-en="Where to find us">Πού θα μας βρείτε</h2>
+  </div>
+  <div class="contact-grid">
+    <div class="info-card reveal">
+      <h3 data-el="Στοιχεία ιατρείου" data-en="Practice details">Στοιχεία ιατρείου</h3>
+      <p class="ic-sub" data-el="Νέος Κόσμος, Αθήνα" data-en="Neos Kosmos, Athens">Νέος Κόσμος, Αθήνα</p>
+      <div class="info-row">
+        <span class="ir-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+        <div><div class="ir-t" data-el="Διεύθυνση" data-en="Address">Διεύθυνση</div><a class="ir-v" href="https://maps.google.com/?q=Ilia+Iliou+93+Athina+11744" target="_blank" rel="noopener">Ηλία Ηλιού 93, Αθήνα 117 44</a></div>
+      </div>
+      <div class="info-row">
+        <span class="ir-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+        <div><div class="ir-t" data-el="Τηλέφωνο" data-en="Phone">Τηλέφωνο</div><a class="ir-v" href="tel:+302109013119">21 0901 3119</a></div>
+      </div>
+      <div class="info-row">
+        <span class="ir-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span>
+        <div style="flex:1"><div class="ir-t" data-el="Ωράριο" data-en="Opening hours">Ωράριο</div>
+          <div class="hours-list" id="hoursList"></div>
+        </div>
+      </div>
+      <div class="socials">
+        <a href="https://www.facebook.com/paidiatros.ioannis.loukas/" target="_blank" rel="noopener" aria-label="Facebook"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.78-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99A10 10 0 0 0 22 12z"/></svg></a>
+        <a href="https://www.linkedin.com/in/ioannis-loukas-7b75a61bb/?originalSubdomain=gr" target="_blank" rel="noopener" aria-label="LinkedIn"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zm1.78 13.02H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg></a>
+      </div>
+    </div>
+    <div class="map-card reveal">
+      <iframe src="https://www.google.com/maps?q=Ilia+Iliou+93,+Athina+117+44&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Χάρτης ιατρείου"></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Footer ===== -->
+<footer>
+  <div class="foot">
+    <div class="foot-brand">
+      <span class="logo-pill"><img src="louklogo.jpg" alt="Παιδίατρος Ιωάννης Κ. Λουκάς"></span>
+      <p data-el="Ιδιωτικό παιδιατρικό ιατρείο στον Νέο Κόσμο. Ζεστή, εξατομικευμένη φροντίδα για κάθε παιδί." data-en="Private pediatric practice in Neos Kosmos. Warm, personalised care for every child.">Ιδιωτικό παιδιατρικό ιατρείο στον Νέο Κόσμο. Ζεστή, εξατομικευμένη φροντίδα για κάθε παιδί.</p>
+    </div>
+    <div>
+      <h4 data-el="Πλοήγηση" data-en="Navigation">Πλοήγηση</h4>
+      <ul>
+        <li><a href="#about" data-el="Ο Ιατρός" data-en="The Doctor">Ο Ιατρός</a></li>
+        <li><a href="#services" data-el="Υπηρεσίες" data-en="Services">Υπηρεσίες</a></li>
+        <li><a href="#gallery" data-el="Ο Χώρος" data-en="The Space">Ο Χώρος</a></li>
+        <li><a href="#reviews" data-el="Αξιολογήσεις" data-en="Reviews">Αξιολογήσεις</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 data-el="Επικοινωνία" data-en="Contact">Επικοινωνία</h4>
+      <ul>
+        <li><a href="tel:+302109013119">21 0901 3119</a></li>
+        <li><a href="https://maps.google.com/?q=Ilia+Iliou+93+Athina+11744" target="_blank" rel="noopener" data-el="Ηλία Ηλιού 93, Αθήνα" data-en="93 Ilia Iliou St, Athens">Ηλία Ηλιού 93, Αθήνα</a></li>
+        <li><a href="https://www.facebook.com/paidiatros.ioannis.loukas/" target="_blank" rel="noopener">Facebook</a></li>
+        <li><a href="https://www.linkedin.com/in/ioannis-loukas-7b75a61bb/?originalSubdomain=gr" target="_blank" rel="noopener">LinkedIn</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <span data-el="© 2026 Ιωάννης Κ. Λουκάς, Παιδίατρος. Με επιφύλαξη παντός δικαιώματος." data-en="© 2026 Ioannis K. Loukas, Pediatrician. All rights reserved.">© 2026 Ιωάννης Κ. Λουκάς, Παιδίατρος. Με επιφύλαξη παντός δικαιώματος.</span>
+    <span class="advon" data-el="Σχεδιασμός &amp; ανάπτυξη από <b>Advon Media</b>" data-en="Designed &amp; developed by <b>Advon Media</b>">Σχεδιασμός &amp; ανάπτυξη από <b>Advon Media</b></span>
+  </div>
+</footer>
+
+<script>
+/* ===== data ===== */
+const SERVICES=[
+  {ic:'stethoscope',el:'Απλή επίσκεψη',en:'Standard visit',min:30,price:1},
+  {ic:'pill',el:'Ηλεκτρονική συνταγογράφηση',en:'E-prescription',min:30,price:1},
+  {ic:'allergy',el:'Αντιμετώπιση αλλεργίας',en:'Allergy management',min:30,price:0},
+  {ic:'stomach',el:'Γαστροοισοφαγική παλινδρόμηση',en:'Acid reflux management',min:30,price:0},
+  {ic:'skin',el:'Αντιμετώπιση εκζέματος',en:'Eczema management',min:30,price:0},
+  {ic:'jaundice',el:'Αντιμετώπιση ίκτερου',en:'Jaundice management',min:30,price:0},
+  {ic:'syringe',el:'Εμβολιασμός',en:'Vaccination',min:30,price:1},
+  {ic:'flu',el:'Εμβόλιο γρίπης',en:'Flu vaccine',min:30,price:0},
+  {ic:'newborn',el:'Επίσκεψη νεογέννητου',en:'Newborn visit',min:30,price:1},
+  {ic:'home',el:"Κατ' οίκον επίσκεψη",en:'Home visit',min:30,price:1},
+  {ic:'breast',el:'Οδηγίες θηλασμού',en:'Breastfeeding guidance',min:30,price:0},
+  {ic:'pregnancy',el:'Παρακολούθηση εγκυμοσύνης',en:'Pregnancy monitoring',min:30,price:0}
+];
+const ICONS={
+  stethoscope:'<path d="M4 3v6a5 5 0 0 0 10 0V3"/><path d="M14 9v3a6 6 0 0 0 6 6"/><circle cx="20" cy="15" r="2.5"/>',
+  pill:'<rect x="3" y="10" width="18" height="6" rx="3" transform="rotate(-45 12 12)"/><path d="M8.5 8.5l7 7"/>',
+  allergy:'<circle cx="12" cy="12" r="3"/><circle cx="12" cy="4" r="1.6"/><circle cx="12" cy="20" r="1.6"/><circle cx="4" cy="12" r="1.6"/><circle cx="20" cy="12" r="1.6"/><circle cx="6" cy="6" r="1.4"/><circle cx="18" cy="18" r="1.4"/><circle cx="18" cy="6" r="1.4"/><circle cx="6" cy="18" r="1.4"/><path d="M12 9V5.6M12 15v3.4M9 12H5.6M15 12h3.4"/>',
+  stomach:'<path d="M9 4c0 3-3 3-3 7s3 5 6 5 6-2 6-6-2-4-5-4"/><circle cx="9" cy="11" r="1"/>',
+  skin:'<path d="M12 3c4 4 7 7 7 11a7 7 0 0 1-14 0c0-4 3-7 7-11z"/>',
+  jaundice:'<circle cx="12" cy="12" r="5"/><path d="M12 1v3M12 20v3M1 12h3M20 12h3M4 4l2 2M18 18l2 2M4 20l2-2M18 6l2-2"/>',
+  syringe:'<path d="M18 2l4 4M17 3l4 4M19 5l-9 9M14 7l3 3M5 21l-3 1 1-3 7-7 2 2z"/>',
+  flu:'<path d="M12 2l8 3v6c0 5-3.5 8-8 11-4.5-3-8-6-8-11V5z"/><path d="M9.5 11.5l2 2 3.5-4"/>',
+  newborn:'<circle cx="12" cy="9" r="4"/><path d="M9.5 8.5h.01M14.5 8.5h.01M10 11c1 1 3 1 4 0"/><path d="M5 21c0-4 3-6 7-6s7 2 7 6"/>',
+  home:'<path d="M3 11l9-8 9 8M5 9v11h14V9"/><path d="M10 20v-6h4v6"/>',
+  breast:'<path d="M12 3a9 9 0 0 0-9 9c0 3 2 5 5 5h8c3 0 5-2 5-5a9 9 0 0 0-9-9z"/><circle cx="12" cy="11" r="1.5"/>',
+  pregnancy:'<circle cx="12" cy="5" r="2.5"/><path d="M12 8c-2 0-3 2-3 5 0 2-1 3-1 5M12 8c3 0 4 3 4 6 0 2 0 3 1 4"/>'
+};
+const REVIEWS=[
+  {n:'Γεσθημανή & Βικτώρια',t:'Ο γιατρός ήταν άμεσος και κατανοητός. Έδειξε άψογο επαγγελματισμό και βοήθησε κι εμάς ως γονείς πώς να χειριστούμε την κατάσταση του παιδιού.',e:'The doctor was prompt and understanding. He showed flawless professionalism and helped us as parents handle our child\u2019s situation.'},
+  {n:'Πηνελόπη & Αναστασία',t:'Καλός, γρήγορος και αγαπητός με τα παιδιά. Πάντα διαθέσιμος όταν τον χρειαστούμε.',e:'Kind, quick and loved by the children. Always available when we need him.'},
+  {n:'Ηλιάνα',t:'Απλά αφεντικό στη δουλειά του. Η κόρη μου 4 ετών αμέσως τον συμπάθησε κι όλα πήγαν καλύτερα απ\u2019 ό,τι περίμενα. Ευχαριστώ!',e:'Simply the best at his job. My 4-year-old took to him instantly and everything went better than I expected. Thank you!'},
+  {n:'Αρσινόη',t:'Πάντα διαθέσιμος κι ευγενικός. Τον συνιστούμε ανεπιφύλακτα.',e:'Always available and kind. We recommend him without reservation.'},
+  {n:'Μιχαήλ',t:'Συνέπεια στο ραντεβού, εξέτασε το παιδί εξονυχιστικά, απλός άνθρωπος, κατανοητός στις οδηγίες. Πολύ θετική εμπειρία!',e:'Punctual, examined our child thoroughly, a down-to-earth person with clear instructions. A very positive experience!'},
+  {n:'Samvay',t:'Πολύ καλός και εξυπηρετικός γιατρός. Άριστη επικοινωνία και συμβουλές.',e:'Very good and helpful doctor. Good communication and advice.'},
+  {n:'Φλώρα',t:'Αξιόλογος γιατρός. Επαγγελματίας.',e:'A remarkable doctor. A true professional.'},
+  {n:'Άγγελος',t:'Πολύ καλός γιατρός — αμεσότητα, επαγγελματισμός, πολύ φιλικός με τα παιδιά και άμεση επικοινωνία.',e:'A very good doctor — responsive, professional, very friendly with children and easy to reach.'},
+  {n:'Νοέλ-Ορφέας',t:'Αξιοπρεπής γιατρός! Υπομονετικός και λεπτομερής.',e:'A dignified doctor! Patient and thorough.'},
+  {n:'Δημήτρης',t:'Χαίρομαι που τον έχω για τα παιδιά μου, όπως χαίρονται κι εκείνα!',e:'I\u2019m glad to have him for my children — and they\u2019re just as glad!'},
+  {n:'Ιάσονας & Δημήτρης',t:'Εξαιρετικός ο γιατρός. Μείναμε απόλυτα ευχαριστημένοι.',e:'An excellent doctor. We were completely satisfied.'},
+  {n:'Άρθουρ',t:'Άριστος επαγγελματίας — πρόσεξε πολύ τον γιο μου.',e:'An excellent professional — he took great care of my son.'},
+  {n:'Θηλή',t:'Ήρθα από τη Σπάρτη για να δει τη μικρή μου. Με ηρέμησε πάρα πολύ.',e:'I came all the way from Sparta for him to see my little one. He put me completely at ease.'},
+  {n:'Βολοντίμιρ',t:'Παρόλο που άργησα στο ραντεβού, με δέχτηκε κανονικά.',e:'Even though I was late for my appointment, he saw me without a problem.'},
+  {n:'Μελίτη',t:'Πρώτη επίσκεψη και νιώθω τυχερός. Ο γιατρός εξήγησε τα πάντα σε βάθος και ήταν πολύ ευγενικός — πρώτα άνθρωπος και μετά επαγγελματίας.',e:'First visit and I feel lucky. The doctor explained everything in depth and was very kind — a human being first and a professional second.'},
+  {n:'Άρτεμις',t:'Η εμπειρία μας ήταν εξαιρετική. Ποτέ ξανά δεν συνεργάστηκε η μικρή μας τόσο καλά με γιατρό. Αυτό λέει πολλά. Ευχαριστούμε!',e:'Our experience was wonderful. Our little one has never cooperated so well with a doctor before. That says a lot. Thank you!'},
+  {n:'Νικόλας',t:'Εξαιρετικός γιατρός. Η εξυπηρέτηση ήταν άψογη, εμπνέει εμπιστοσύνη και ήταν πάντα διαθέσιμος όταν τον χρειαστήκαμε.',e:'An excellent doctor. His service was flawless, he inspires trust and was always available when we needed him.'}
+];
+const HOURS=[
+  {dEl:'Δευτέρα',dEn:'Monday',hEl:'9:30–13:00, 17:00–20:00',hEn:'9:30am–1pm, 5–8pm',day:1},
+  {dEl:'Τρίτη',dEn:'Tuesday',hEl:'17:00–20:00',hEn:'5–8pm',day:2},
+  {dEl:'Τετάρτη',dEn:'Wednesday',hEl:'17:00–20:00',hEn:'5–8pm',day:3},
+  {dEl:'Πέμπτη',dEn:'Thursday',hEl:'17:00–20:00',hEn:'5–8pm',day:4},
+  {dEl:'Παρασκευή',dEn:'Friday',hEl:'9:30–13:00, 17:00–20:00',hEn:'9:30am–1pm, 5–8pm',day:5},
+  {dEl:'Σάββατο',dEn:'Saturday',hEl:'Κλειστά',hEn:'Closed',day:6,closed:true},
+  {dEl:'Κυριακή',dEn:'Sunday',hEl:'Κλειστά',hEn:'Closed',day:0,closed:true}
+];
+let LANG='el';
+
+/* render services */
+const sg=document.getElementById('servGrid');
+SERVICES.forEach(s=>{
+  const el=document.createElement('div');el.className='serv';
+  el.innerHTML=`<div class="si"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${ICONS[s.ic]}</svg></div>
+  <h3 data-el="${s.el}" data-en="${s.en}">${s.el}</h3>
+  <div class="meta"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg><span data-el="30 λεπτά" data-en="30 min">30 λεπτά</span></div>
+  <a href="tel:+302109013119" class="quote" data-el="Στείλτε αίτημα κόστους →" data-en="Request a quote →">Στείλτε αίτημα κόστους →</a>`;
+  sg.appendChild(el);
+});
+
+/* render reviews (doubled for seamless loop) */
+const palette=['#7E4FB0','#5AB031','#2F8FD6','#E8453C','#FFA51E'];
+const rt=document.getElementById('revTrack');
+function avatar(name,i){const init=name.trim()[0]||'★';return `<span class="av" style="background:${palette[i%palette.length]}">${init}</span>`}
+function revCard(r,i){return `<div class="rev-card"><div class="rc-top">${avatar(r.n,i)}<div><div class="rc-name">${r.n}</div><div class="rc-stars">★★★★★</div></div></div><p data-el="${r.t.replace(/"/g,'&quot;')}" data-en="${r.e.replace(/"/g,'&quot;')}">${r.t}</p></div>`}
+rt.innerHTML=REVIEWS.map(revCard).join('')+REVIEWS.map(revCard).join('');
+
+/* render hours */
+const hl=document.getElementById('hoursList');
+const todayJs=new Date().getDay();
+HOURS.forEach(h=>{
+  const row=document.createElement('div');
+  row.className='hr'+(h.closed?' closed':'')+(h.day===todayJs?' today':'');
+  row.innerHTML=`<span class="d" data-el="${h.dEl}" data-en="${h.dEn}">${h.dEl}</span><span class="h" data-el="${h.hEl}" data-en="${h.hEn}">${h.hEl}</span>`;
+  hl.appendChild(row);
+});
+
+/* language toggle */
+function setLang(l){
+  LANG=l;
+  document.documentElement.lang=l;
+  document.querySelectorAll('[data-el]').forEach(n=>{
+    const v=l==='en'?n.getAttribute('data-en'):n.getAttribute('data-el');
+    if(v!=null)n.innerHTML=v;
+  });
+  document.querySelectorAll('.lang button').forEach(b=>b.classList.toggle('active',b.dataset.lang===l));
+}
+document.querySelectorAll('.lang button').forEach(b=>b.addEventListener('click',()=>setLang(b.dataset.lang)));
+
+/* nav scroll */
+const header=document.getElementById('header');
+addEventListener('scroll',()=>header.classList.toggle('scrolled',scrollY>30));
+
+/* mobile menu */
+const burger=document.getElementById('burger'),mm=document.getElementById('mobileMenu');
+burger.addEventListener('click',()=>{burger.classList.toggle('open');mm.classList.toggle('open')});
+mm.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{burger.classList.remove('open');mm.classList.remove('open')}));
+
+/* reveal */
+const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(n=>io.observe(n));
+
+/* loader */
+addEventListener('load',()=>setTimeout(()=>document.getElementById('loader').classList.add('done'),650));
+</script>
+</body>
+</html>
