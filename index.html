@@ -39,9 +39,11 @@ a{color:inherit;text-decoration:none}
 h1,h2,h3,h4{font-family:var(--display);font-weight:600;line-height:1.08;letter-spacing:-.01em}
 
 /* ===== Loader ===== */
-#loader{position:fixed;inset:0;z-index:9999;background:var(--cream);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:26px;transition:opacity .7s ease,visibility .7s}
+#loader{position:fixed;inset:0;z-index:9999;background:var(--cream);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:20px;transition:opacity .7s ease,visibility .7s}
 #loader.done{opacity:0;visibility:hidden}
-.cradle-load{width:96px;height:96px;position:relative}
+.loader-logo{height:75px;width:auto;border-radius:18px;animation:pulse-logo 2s ease-in-out infinite}
+@keyframes pulse-logo{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
+.cradle-load{width:86px;height:86px;position:relative}
 .cradle-load svg{width:100%;height:100%;overflow:visible}
 .cradle-load .arc{fill:none;stroke:var(--green);stroke-width:9;stroke-linecap:round;stroke-dasharray:200;stroke-dashoffset:200;animation:draw 1.5s ease forwards infinite}
 .cradle-load .baby{transform-origin:center;animation:bob 1.5s ease-in-out infinite}
@@ -54,8 +56,7 @@ header{position:fixed;top:0;left:0;right:0;z-index:900;transition:all .35s ease;
 header.scrolled{background:rgba(251,248,242,.86);backdrop-filter:blur(14px);box-shadow:0 6px 30px -20px rgba(94,54,144,.5);padding:9px 0}
 .nav{max-width:var(--maxw);margin:0 auto;padding:0 26px;display:flex;align-items:center;justify-content:space-between;gap:18px}
 .brand{display:flex;align-items:center;gap:12px;flex-shrink:0}
-/* Fixed logo cropping */
-.logo-img{width:auto;height:85px;max-width:220px;object-fit:contain;transition:all .35s ease}
+.logo-img{width:auto;height:85px;max-width:220px;object-fit:contain;border-radius:18px;transition:all .35s ease}
 header.scrolled .logo-img{height:55px}
 .nav-links{display:flex;align-items:center;gap:6px}
 .nav-links a{font-weight:600;font-size:.95rem;color:var(--ink-soft);padding:9px 14px;border-radius:40px;transition:all .25s}
@@ -244,6 +245,8 @@ footer{background:var(--ink);color:#fff;margin-top:84px;padding:54px 26px 30px}
   .fc-2{right:2%;top:18%;transform:scale(.85)}
 }
 @media(max-width:980px){
+  .logo-img{height:70px}
+  header.scrolled .logo-img{height:50px}
   .about-grid{grid-template-columns:1fr;gap:54px}
   .about-photo{max-width:380px;margin:0 auto}
   .reviews-layout{grid-template-columns:1fr;gap:40px}
@@ -258,14 +261,19 @@ footer{background:var(--ink);color:#fff;margin-top:84px;padding:54px 26px 30px}
   .serv-grid{grid-template-columns:repeat(2,1fr)}
 }
 @media(max-width:768px){
+  .logo-img{height:60px}
+  header.scrolled .logo-img{height:48px}
   .hero{min-height:85vh;padding-top:140px;background-attachment:scroll;background-position:center top;}
   .float-card{display:none}
   .slider-wrap{aspect-ratio:4/3}
 }
 @media(max-width:560px){
+  .logo-img{height:55px}
+  header.scrolled .logo-img{height:45px}
   .hero-trust{gap:18px}
   .section{padding:60px 20px}
   .foot{grid-template-columns:1fr}
+  .foot-brand .logo-img{display:none}
   .serv-grid{grid-template-columns:1fr}
 }
 @media(prefers-reduced-motion:reduce){
@@ -280,6 +288,7 @@ footer{background:var(--ink);color:#fff;margin-top:84px;padding:54px 26px 30px}
 
 <!-- ===== Loader ===== -->
 <div id="loader">
+  <img src="louklogo.jpg" alt="Λογότυπο" class="loader-logo">
   <div class="cradle-load">
     <svg viewBox="0 0 100 100">
       <path class="arc" d="M10,52 Q50,98 90,52"/>
