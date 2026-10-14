@@ -167,7 +167,7 @@ header.hd{position:fixed;inset:0 0 auto 0;z-index:1000;padding:14px 0;transition
 .hero h1 em .ul{position:absolute;left:-2%;right:-2%;bottom:-.16em;height:.32em;width:104%;overflow:visible;pointer-events:none}
 .hero h1 em .ul path{fill:none;stroke:var(--gr);stroke-width:7;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 1s var(--ease) .9s}
 .hero.go h1 em .ul path{stroke-dashoffset:0}
-.hw{display:inline-block;opacity:0;transform:translateY(.55em) rotate(2deg);transition:opacity .6s var(--ease),transform .8s var(--bounce);transition-delay:calc(var(--i)*70ms + 120ms)}
+.hw{display:inline-block;white-space:nowrap;opacity:0;transform:translateY(.55em) rotate(2deg);transition:opacity .6s var(--ease),transform .8s var(--bounce);transition-delay:calc(var(--i)*70ms + 120ms)}
 .hero.go .hw{opacity:1;transform:none}
 .no-js .hw,.hero.static .hw{opacity:1;transform:none;transition:none}
 .hero .lead{font-size:clamp(1.05rem,1.3vw,1.18rem);color:var(--ink-2);max-width:540px;margin-bottom:34px}
@@ -874,7 +874,7 @@ function splitWords(h){
   var i=0;
   (function walk(n){ [].slice.call(n.childNodes).forEach(function(c){
     if(c.nodeType===3){ var f=D.createDocumentFragment();
-      c.textContent.split(/(\s+)/).forEach(function(w){ if(!w)return; if(/^\s+$/.test(w)){f.appendChild(D.createTextNode(' '));return}
+      c.textContent.split(/([ \t\n\r]+)/).forEach(function(w){ if(!w)return; if(/^[ \t\n\r]+$/.test(w)){f.appendChild(D.createTextNode(' '));return}
         var s=D.createElement('span'); s.className='hw'; s.style.setProperty('--i',i++); s.textContent=w; f.appendChild(s); });
       c.replaceWith(f);
     } else if(c.nodeType===1 && c.tagName!=='svg' && c.tagName!=='BR'){ walk(c) }
